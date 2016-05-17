@@ -2,9 +2,13 @@
 angular.module('kps')
     .factory('EventService', service);
 
-function service($http, $state) {
+function service($http, $state, MailService, RouteService) {
 
     console.log("EventService");
+
+    var testList = {
+
+    };
 
     var loggedIn = false;
     var eventList;
@@ -28,6 +32,14 @@ function service($http, $state) {
                 console.log(error);
             }
         );
+    }
+
+    function loadMailFromEventList(){
+        var mailList = [];
+        for (var i = 0; i < eventList.mail.length; i++){
+            mailList.push(eventList.mail[i]);
+        }
+        MailService.initialiseMailList(mailList);
     }
 
     function clerkLogin(){

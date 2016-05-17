@@ -1,0 +1,64 @@
+
+
+<div style="width: 100%; height: 100%; padding: 20px;">
+
+    <style>
+        .evCr-container {
+            border: 1px solid #dddddd;
+            border-radius: 2px;
+            padding: 15px;
+        }
+
+        .evCr-typeSelect {
+            border: 1px solid #dddddd;
+            border-radius: 2px;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .evCr-typeSelect > h4 {
+            width: 100%;
+            height: 30px;
+        }
+
+        .evCr-typeSelect > button {
+            float: left;
+            width: calc(25% - 15px);
+            margin-right: 20px;
+        }
+
+        .evCr-eventContents {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #dddddd;
+            border-radius: 2px;
+        }
+    </style>
+
+    <div class="evCr-container">
+
+        <h4>Create Event</h4>
+
+        <div class="evCr-typeSelect">
+            <h4>Event type:</h4>
+            <button class="btn"
+                    ng-click="selectEventDefaults('mail')">Mail Delivery</button>
+            <button class="btn"
+                    ng-click="selectEventDefaults('price')">Customer Price</button>
+            <button class="btn"
+                    ng-click="selectEventDefaults('cost')">Transport Cost</button>
+            <button class="btn" style="margin-right: 0"
+                    ng-click="selectEventDefaults('discontinue')">Discontinue Route</button>
+        </div>
+
+        <div class="evCr-eventContents">
+
+            <div ng-repeat="(key, value) in selectedEvent">
+                <h4>{{key}}<input type="text" ng-model="selectedEvent[key]"></h4>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
