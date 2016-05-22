@@ -4,8 +4,6 @@ angular.module('kps')
 
 function service($http, $state, MailService, RouteService) {
 
-    console.log("EventService");
-
     var testList = {
 
     };

@@ -107,7 +107,7 @@
 
         <div class="evCr-eventContents">
 
-            <div ng-repeat="(key, value) in selectedEvent">
+            <div ng-repeat="(key, value) in selectedEvent" ng-if="key != 'eventType'">
                 <div class="evCr-eventAttr">
                     <div><h4>{{key}}</h4></div>
                     <input ng-if="key != 'day'" type="text" class="form-control" ng-model="selectedEvent[key]">

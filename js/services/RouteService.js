@@ -4,8 +4,6 @@ angular.module('kps')
 
 function service() {
 
-    console.log("Route Service");
-
     var svc = {
 
     };

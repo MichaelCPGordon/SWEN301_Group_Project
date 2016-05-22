@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('kps')
-        .directive('eventCreator', [directive]);
+        .directive('eventCreator', ['$uibModal', directive]);
 
-    function directive(){
+    function directive($uibModal){
         return {
             restrict: 'EA',
             replace: true,
@@ -14,14 +14,13 @@
             templateUrl: "templates/eventCreator.html",
             link: function (scope) {
 
-                console.log(scope.name);
-
                 scope.dayOptions = [
                     "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
                 ];
 
                 scope.eventDefaults = {
                     mail: {
+                        eventType: "mail",
                         day: scope.dayOptions[0],
                         to: "",
                         from: "",
@@ -30,6 +29,7 @@
                         priority: ""
                     },
                     price: {
+                        eventType: "price",
                         to: "",
                         from: "",
                         priority: "",
@@ -37,6 +37,7 @@
                         volumeCost: 0
                     },
                     cost: {
+                        eventType: "cost",
                         day: scope.dayOptions[0],
                         company: "",
                         to: "",
@@ -50,6 +51,7 @@
                         frequency: 0
                     },
                     discontinue: {
+                        eventType: "discontinue",
                         company: "",
                         to: "",
                         from: "",
@@ -63,10 +65,62 @@
                 scope.selectEventDefaults = function(event){
                     scope.selectedEvent = scope.eventDefaults[event];
                     scope.eventFieldsLength = Object.keys(scope.selectedEvent).length;
-                }
+                };
 
                 scope.createEvent = function(){
-                    console.log(scope.selectedEvent);
+                    var invalidFields = scope.eventDataVerified(scope.selectedEvent);
+                    if (invalidFields.length > 0){
+                        scope.displayInvalidFieldsModal(invalidFields);
+                    }
+                };
+
+                scope.eventDataVerified = function(ev){
+                    var invalidFields = [];
+
+                    if (ev.eventType == "mail"){
+                        verifyIntegerFields(["weight", "volume"]);
+                    }
+                    else if (ev.eventType == "price"){
+                        verifyIntegerFields(["weightCost", "volumeCost"]);
+                    }
+                    else if (ev.eventType == "cost"){
+                        verifyIntegerFields(["weightCost", "volumeCost", "maxWeight", "maxVolume", "duration", "frequency"]);
+                    }
+                    else if (ev.eventType == "discontinue"){
+
+                    }
+
+                    return invalidFields;
+
+                    function verifyIntegerFields(fieldNames){
+                        for (var i = 0; i < fieldNames.length; i++){
+                            var fieldName = fieldNames[i];
+                            isInt(ev[fieldName]) ? ev[fieldName] = parseInt(ev[fieldName]) : addToInvalidFields(fieldName, ev[fieldName]);
+                        }
+                    }
+                    function addToInvalidFields(fieldName, fieldValue){
+                        invalidFields.push({
+                            fieldName: fieldName,
+                            fieldValue: fieldValue
+                        });
+                    }
+                    function isInt(value) {
+                        return !isNaN(value) &&
+                            parseInt(Number(value)) == value &&
+                            !isNaN(parseInt(value, 10));
+                    }
+                };
+
+                scope.displayInvalidFieldsModal = function(fields){
+                    var invalidFieldsModal = $uibModal.open({
+                        animation: true,
+                        templateUrl: 'templates/invalidFieldsModal.html',
+                        controller: 'InvalidFieldsModalCtrl as invFields',
+                        size: 'md',
+                        resolve: {
+                            fields: function(){ return fields; }
+                        }
+                    });
                 }
 
 

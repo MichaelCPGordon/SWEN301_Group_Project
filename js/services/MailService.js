@@ -4,8 +4,6 @@ angular.module('kps')
 
 function service() {
 
-    console.log("MailService");
-
     var mailList;
 
     var svc = {
