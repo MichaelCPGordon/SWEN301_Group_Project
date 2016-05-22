@@ -37,6 +37,7 @@
                         volumeCost: 0
                     },
                     cost: {
+                        day: scope.dayOptions[0],
                         company: "",
                         to: "",
                         from: "",
@@ -46,8 +47,7 @@
                         maxWeight: 0,
                         maxVolume: 0,
                         duration: 0,
-                        frequency: 0,
-                        day: scope.dayOptions[0]
+                        frequency: 0
                     },
                     discontinue: {
                         company: "",
@@ -59,12 +59,14 @@
 
                 scope.selectedEvent = scope.eventDefaults['mail'];
                 scope.eventFieldsLength = Object.keys(scope.selectedEvent).length;
-
-                console.log(scope.selectedEvent);
                 
                 scope.selectEventDefaults = function(event){
                     scope.selectedEvent = scope.eventDefaults[event];
                     scope.eventFieldsLength = Object.keys(scope.selectedEvent).length;
+                }
+
+                scope.createEvent = function(){
+                    console.log(scope.selectedEvent);
                 }
 
 

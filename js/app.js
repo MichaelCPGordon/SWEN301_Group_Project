@@ -1,6 +1,8 @@
 
     angular.module('kps', [
         'ui.router',
+        'ngAnimate',
+        'ui.bootstrap'
     ])
     .run(function($rootScope, $state, EventService){
         $state.go('login');
