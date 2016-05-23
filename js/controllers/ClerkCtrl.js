@@ -2,8 +2,16 @@
 angular.module('kps')
     .controller('ClerkCtrl', controller);
 
-function controller($scope) {
+function controller($scope, EventService) {
     var vm = this;
 
-    console.log("clerk");
+    vm.username = EventService.getUsername();
+
+
+    vm.logout = logout;
+
+    function logout(){
+        EventService.logout();
+    }
+
 }

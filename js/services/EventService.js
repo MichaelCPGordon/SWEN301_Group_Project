@@ -16,7 +16,9 @@ function service($http, $state, MailService, RouteService) {
         readLogFile: readLogFile,
         clerkLogin: clerkLogin,
         managerLogin: managerLogin,
-        isLoggedIn: isLoggedIn
+        logout: logout,
+        isLoggedIn: isLoggedIn,
+        getUsername: getUsername
     };
 
     function readLogFile(){
@@ -55,8 +57,18 @@ function service($http, $state, MailService, RouteService) {
         $state.go('manager');
     }
 
+    function logout(){
+        var loggedIn = false;
+        var username = "";
+        $state.go('login');
+    }
+
     function isLoggedIn(){
         return loggedIn;
+    }
+
+    function getUsername(){
+        return loggedIn ? username : null;
     }
 
     return svc;
