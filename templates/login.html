@@ -1,6 +1,80 @@
 
-<button ng-click="login.managerLogin()">Manager Login</button>
+<style>
+    .login-container {
+        margin: 20px auto;
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+        overflow: hidden;
+        padding: 20px;
+        width: 600px;
+        display: block;
+    }
 
-<button ng-click="login.clerkLogin()">Clerk Login</button>
+    .login-header {
+        text-align: center;
+        margin: 10px 0 20px 0;
+    }
 
-<event-creator name="'hello'"></event-creator>
+    .login-innerContainer {
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+        overflow: hidden;
+        margin: 10px 0 10px 0;
+        padding: 15px 30px;
+    }
+
+    .login-innerContainer > div {
+        margin-bottom: 15px;
+    }
+
+    .login-innerContainer > div > div {
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+    }
+
+    .login-btn {
+        float: right;
+        width: 120px;
+        margin: 15px 0 10px 20px;
+    }
+
+    .login-inputError {
+        width: 100%;
+        height: 30px;
+        color: #B71C1C;
+        line-height: 30px;
+    }
+</style>
+
+<div class="login-container">
+
+    <h3 class="login-header">KPS Login</h3>
+
+    <div class="login-innerContainer">
+        <div>
+            <div>Username</div>
+            <input class="form-control" ng-model="login.username">
+        </div>
+
+        <div>
+            <div>Password</div>
+            <input class="form-control" type="password" ng-model="login.password">
+        </div>
+
+    </div>
+
+    <button class="btn btn-success login-btn" ng-click="login.clerkLogin()">Clerk Login</button>
+    <button class="btn btn-primary login-btn" ng-click="login.managerLogin()">Manager Login</button>
+    
+    <div class="login-inputError" ng-show="login.showUsernameError">
+        Please enter a valid username
+    </div>
+
+    <div class="login-inputError" ng-show="login.showPasswordError">
+        Please enter a valid password
+    </div>
+
+</div>
+
+

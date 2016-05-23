@@ -9,12 +9,13 @@ function service($http, $state, MailService, RouteService) {
     };
 
     var loggedIn = false;
+    var username = "";
     var eventList;
 
     var svc = {
         readLogFile: readLogFile,
         clerkLogin: clerkLogin,
-        mangerLogin: managerLogin,
+        managerLogin: managerLogin,
         isLoggedIn: isLoggedIn
     };
 
@@ -40,14 +41,16 @@ function service($http, $state, MailService, RouteService) {
         MailService.initialiseMailList(mailList);
     }
 
-    function clerkLogin(){
+    function clerkLogin(un){
         loggedIn = true;
+        username = un;
         readLogFile();
         $state.go('clerk');
     }
 
-    function managerLogin(){
+    function managerLogin(un){
         loggedIn = true;
+        username = un;
         readLogFile();
         $state.go('manager');
     }
