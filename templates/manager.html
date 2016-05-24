@@ -9,22 +9,52 @@
     .manager-headerUsername {
         float: left;
         color: #fafafa;
-        margin: 0 0 0 20px;
+        padding-left: 20px;
+        margin:0;
         height: 60px;
+        width: 30%;
         line-height: 60px;
     }
 
     .manager-headerLogout {
-        float: right;
+        float: left;
+        margin:0;
         color: #fafafa;
-        margin: 0 20px 0 0;
         height: 60px;
+        width: 30%;
+        padding-right: 20px;
+        text-align: right;
         line-height: 60px;
         cursor: pointer;
     }
 
-    .manager-headerLogout:hover {
+    .manager-headerLogout:hover, .manager-headerCreateEvent:hover, .manager-headerAnalyse:hover{
         color: #C5CAE9;
+    }
+
+    .manager-headerTabs{
+        height: 100%;
+        float: left;
+        color: white;
+        vertical-align: middle;
+        width: 40%;
+    }
+    .manager-headerCreateEvent{
+        float:left;
+        margin-left: 30%;
+        line-height: 45px;
+        vertical-align: middle;
+        color: white;
+        cursor: pointer;
+        width: 100px;
+    }
+    .manager-headerAnalyse{
+        float: left;
+        cursor: pointer;
+        margin-left: 7%;
+        vertical-align: middle;
+        line-height: 45px;
+        width: 100px;
     }
 </style>
 
@@ -32,9 +62,17 @@
     <h2 class="manager-headerUsername">
         {{manager.username}}
     </h2>
+    <div class="manager-headerTabs">
+        <h4 class="manager-headerCreateEvent" ng-click="manager.goToPage('newEvent')">
+            New Event
+        </h4>
+        <h4 class="manager-headerAnalyse" ng-click="manager.goToPage('analyse')">
+            Analyse
+        </h4>
+    </div>
     <h4 class="manager-headerLogout" ng-click="manager.logout()">
         Logout
     </h4>
 </div>
 
-<event-creator name="'hello'"></event-creator>
+<event-creator ng-show="manager.pageToShow == 'newEvent'" name="'hello'"></event-creator>
