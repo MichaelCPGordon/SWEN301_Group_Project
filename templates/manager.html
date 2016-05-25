@@ -40,21 +40,31 @@
         width: 40%;
     }
     .manager-headerCreateEvent{
-        float:left;
-        margin-left: 30%;
-        line-height: 45px;
-        vertical-align: middle;
+        float: left;
         color: white;
         cursor: pointer;
-        width: 100px;
+        width: 50%;
     }
     .manager-headerAnalyse{
         float: left;
         cursor: pointer;
-        margin-left: 7%;
-        vertical-align: middle;
-        line-height: 45px;
-        width: 100px;
+        width: 50%;
+    }
+    .manager-headerCreateEvent > h4 {
+        width: 120px;
+        margin: 0;
+        line-height: 60px;
+        float: right;
+        text-align: center;
+    }
+    .manager-headerAnalyse > h4 {
+        width: 120px;
+        margin: 0;
+        line-height: 60px;
+        text-align: center;
+    }
+    .manager-selectedTab {
+        background-color: #5C6BC0;
     }
 </style>
 
@@ -63,12 +73,14 @@
         {{manager.username}}
     </h2>
     <div class="manager-headerTabs">
-        <h4 class="manager-headerCreateEvent" ng-click="manager.goToPage('newEvent')">
-            New Event
-        </h4>
-        <h4 class="manager-headerAnalyse" ng-click="manager.goToPage('analyse')">
-            Analyse
-        </h4>
+        <div class="manager-headerCreateEvent" ng-click="manager.goToPage('newEvent')">
+            <h4 ng-class="manager.pageToShow == 'newEvent' ? 'manager-selectedTab':''">
+                New Event</h4>
+        </div>
+        <div class="manager-headerAnalyse" ng-click="manager.goToPage('analyse')">
+            <h4 ng-class="manager.pageToShow == 'analyse' ? 'manager-selectedTab':''">
+                Analyse</h4>
+        </div>
     </div>
     <h4 class="manager-headerLogout" ng-click="manager.logout()">
         Logout

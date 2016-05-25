@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('kps')
-        .directive('eventCreator', ['$uibModal', directive]);
+        .directive('eventCreator', ['$uibModal', 'MailService', 'RouteService', directive]);
 
-    function directive($uibModal){
+    function directive($uibModal, MailService, RouteService){
         return {
             restrict: 'EA',
             replace: true,
@@ -60,54 +60,80 @@
                 };
 
                 scope.selectedEvent = scope.eventDefaults['mail'];
-                scope.eventFieldsLength = Object.keys(scope.selectedEvent).length;
-                
+                scope.eventAttrsLength = Object.keys(scope.selectedEvent).length;
+
                 scope.selectEventDefaults = function(event){
                     scope.selectedEvent = scope.eventDefaults[event];
-                    scope.eventFieldsLength = Object.keys(scope.selectedEvent).length;
+                    scope.eventAttrsLength = Object.keys(scope.selectedEvent).length;
                 };
 
                 scope.createEvent = function(){
-                    var invalidFields = scope.eventDataVerified(scope.selectedEvent);
-                    if (invalidFields.length > 0){
-                        scope.displayInvalidFieldsModal(invalidFields);
+                    var invalidAttrs = scope.eventDataVerified(scope.selectedEvent);
+                    if (invalidAttrs.length > 0){
+                        scope.displayInvalidFieldsModal(invalidAttrs);
+                    }
+                    else {
+                        if (scope.selectedEvent.eventType == 'mail'){
+                            MailService.createMailEvent(scope.selectedEvent);
+                        }
+                        else {
+                            RouteService.createRouteEvent(scope.selectedEvent);
+                        }
                     }
                 };
 
                 scope.eventDataVerified = function(ev){
-                    var invalidFields = [];
+                    var invalidAttrs = [];
 
                     if (ev.eventType == "mail"){
-                        verifyIntegerFields(["weight", "volume"]);
+                        verifyIntegerAttrs(["weight", "volume"]);
                     }
                     else if (ev.eventType == "price"){
-                        verifyIntegerFields(["weightCost", "volumeCost"]);
+                        verifyIntegerAttrs(["weightCost", "volumeCost"]);
                     }
                     else if (ev.eventType == "cost"){
-                        verifyIntegerFields(["weightCost", "volumeCost", "maxWeight", "maxVolume", "duration", "frequency"]);
+                        verifyIntegerAttrs(["weightCost", "volumeCost", "maxWeight", "maxVolume", "duration", "frequency"]);
                     }
                     else if (ev.eventType == "discontinue"){
 
                     }
+                    ensureNoAttrsAreBlank(ev);
 
-                    return invalidFields;
+                    return invalidAttrs;
 
-                    function verifyIntegerFields(fieldNames){
-                        for (var i = 0; i < fieldNames.length; i++){
-                            var fieldName = fieldNames[i];
-                            isInt(ev[fieldName]) ? ev[fieldName] = parseInt(ev[fieldName]) : addToInvalidFields(fieldName, ev[fieldName]);
+                    function ensureNoAttrsAreBlank(ev){
+                        for (var attr in ev) {
+                            if (ev.hasOwnProperty(attr) && attr != 'eventType') {
+                                if (ev[attr].length == 0 && attrNotInInvalidAttrs(attr)){
+                                    addToInvalidAttrs(attr, ev[attr]);
+                                }
+                            }
                         }
                     }
-                    function addToInvalidFields(fieldName, fieldValue){
-                        invalidFields.push({
-                            fieldName: fieldName,
-                            fieldValue: fieldValue
+                    function verifyIntegerAttrs(attrNames){
+                        for (var i = 0; i < attrNames.length; i++){
+                            var attrName = attrNames[i];
+                            isInt(ev[attrName]) ? ev[attrName] = parseInt(ev[attrName]) : addToInvalidAttrs(attrName, ev[attrName]);
+                        }
+                    }
+                    function addToInvalidAttrs(attrName, attrValue){
+                        invalidAttrs.push({
+                            attrName: attrName,
+                            attrValue: attrValue
                         });
                     }
                     function isInt(value) {
                         return !isNaN(value) &&
                             parseInt(Number(value)) == value &&
                             !isNaN(parseInt(value, 10));
+                    }
+                    function attrNotInInvalidAttrs(attrName){
+                        for (var i = 0; i < invalidAttrs.length; i++){
+                            if (invalidAttrs[i].attrName == attrName){
+                                return false;
+                            }
+                        }
+                        return true;
                     }
                 };
 
@@ -121,7 +147,8 @@
                             fields: function(){ return fields; }
                         }
                     });
-                }
+                };
+
 
 
 

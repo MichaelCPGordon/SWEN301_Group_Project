@@ -2,16 +2,21 @@
 angular.module('kps')
     .factory('MailService', service);
 
-function service() {
+function service(EventService, $rootScope) {
 
     var mailList;
 
     var svc = {
-        initialiseMailList: initialiseMailList
+        createMailEvent: createMailEvent
     };
 
-    function initialiseMailList(list){
-        mailList = list;
+    $rootScope.$on('logFileLoaded', function(event, args){
+        mailList = args.mail;
+    });
+
+    // mailList automatically updated on EventService.addEvent()
+    function createMailEvent(event){
+        EventService.addEvent(event);
     }
 
     return svc;

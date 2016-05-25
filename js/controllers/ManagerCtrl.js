@@ -18,7 +18,6 @@ function controller($scope, EventService) {
     }
 
     function goToPage(pageName){
-        console.log(pageName);
         vm.pageToShow = pageName;
     }
 

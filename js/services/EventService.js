@@ -2,20 +2,29 @@
 angular.module('kps')
     .factory('EventService', service);
 
-function service($http, $state, MailService, RouteService) {
+function service($http, $state, $rootScope) {
 
     var loggedIn = false;
     var username = "";
     var eventList;
 
     var svc = {
+        addEvent: addEvent,
         readLogFile: readLogFile,
         clerkLogin: clerkLogin,
         managerLogin: managerLogin,
         logout: logout,
         isLoggedIn: isLoggedIn,
-        getUsername: getUsername
+        getUsername: getUsername,
+        getMailFromEventList: getMailFromEventList
     };
+
+    function addEvent(event){
+        event.timestamp = new Date();
+        event.timestamp.setMilliseconds(0);
+
+        eventList[event.eventType].push(event);
+    }
 
     function readLogFile(){
         $http.get('././log.xml').then(
@@ -23,7 +32,7 @@ function service($http, $state, MailService, RouteService) {
                 var x2js = new X2JS();
                 eventList = x2js.xml_str2json(response.data).simulation;
                 formatEventDatesToObjects();
-                console.log(eventList);
+                $rootScope.$broadcast('logFileLoaded', eventList);
             },
             function(error){
                 console.log(error);
@@ -73,12 +82,12 @@ function service($http, $state, MailService, RouteService) {
         }
     }
 
-    function loadMailFromEventList(){
+    function getMailFromEventList(){
         var mailList = [];
         for (var i = 0; i < eventList.mail.length; i++){
             mailList.push(eventList.mail[i]);
         }
-        MailService.initialiseMailList(mailList);
+        return mailList;
     }
 
     function clerkLogin(un){
@@ -96,8 +105,8 @@ function service($http, $state, MailService, RouteService) {
     }
 
     function logout(){
-        var loggedIn = false;
-        var username = "";
+        loggedIn = false;
+        username = "";
         $state.go('login');
     }
 
