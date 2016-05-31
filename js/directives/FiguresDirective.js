@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('kps')
-        .directive('Figures', [directive]);
+        .directive('figures', [directive]);
 
     function directive(){
         return {
@@ -15,4 +15,4 @@
             }
         }
     }
-});
+})();
