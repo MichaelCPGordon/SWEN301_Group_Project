@@ -17,7 +17,8 @@ function service($http, $state, $rootScope) {
         logout: logout,
         isLoggedIn: isLoggedIn,
         getUsername: getUsername,
-        getMailFromEventList: getMailFromEventList
+        getMailEvents: getMailEvents,
+        getRouteEvents: getRouteEvents
     };
 
     function addEvent(event){
@@ -44,6 +45,22 @@ function service($http, $state, $rootScope) {
         return allEvents;
     }
 
+    function addEventTypeToEachEvent(){
+        var i;
+        for (i = 0; i < eventList.cost.length; i++){
+            eventList.cost[i].eventType = "cost";
+        }
+        for (i = 0; i < eventList.price.length; i++){
+            eventList.price[i].eventType = "price";
+        }
+        for (i = 0; i < eventList.discontinue.length; i++){
+            eventList.discontinue[i].eventType = "discontinue";
+        }
+        for (i = 0; i < eventList.mail.length; i++){
+            eventList.mail[i].eventType = "mail";
+        }
+    }
+
     function readLogFile(){
         $http.get('././log.xml').then(
             function(response){
@@ -51,9 +68,10 @@ function service($http, $state, $rootScope) {
                 eventList = x2js.xml_str2json(response.data).simulation;
                 formatEventDatesToObjects();
                 ensureEventsAreInLists();
+                addEventTypeToEachEvent();
                 delete eventList['_xsi:noNamespaceSchemaLocation'];
                 delete eventList['_xmlns:xsi'];
-                $rootScope.$broadcast('logFileLoaded', eventList);
+                $rootScope.$broadcast('logFileLoaded');
             },
             function(error){
                 console.log(error);
@@ -121,12 +139,12 @@ function service($http, $state, $rootScope) {
         }
     }
 
-    function getMailFromEventList(){
-        var mailList = [];
-        for (var i = 0; i < eventList.mail.length; i++){
-            mailList.push(eventList.mail[i]);
-        }
-        return mailList;
+    function getMailEvents(){
+        return eventList.mail;
+    }
+
+    function getRouteEvents(){
+        return [eventList.price, eventList.cost, eventList.discontinue];
     }
 
     function clerkLogin(un){

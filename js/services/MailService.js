@@ -10,8 +10,8 @@ function service(EventService, $rootScope) {
         createMailEvent: createMailEvent
     };
 
-    $rootScope.$on('logFileLoaded', function(event, args){
-        mailList = args.mail;
+    $rootScope.$on('logFileLoaded', function(){
+        mailList = EventService.getMailEvents();
     });
 
     // mailList automatically updated on EventService.addEvent()
