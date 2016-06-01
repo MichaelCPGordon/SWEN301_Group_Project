@@ -14,25 +14,61 @@ function service(EventService, $rootScope) {
     var testRoute = {
         to: "",
         from: "",
-        
-    }
+        type: "",
+        priority: "",
+        company: "",
+        duration: 0,
+        frequency: 0,
+        day: "",
+        priceInfo: {
+            weightCost: 0,
+            volumeCost: 0
+        },
+        costInfo: {
+            weightCost: 0,
+            volumeCost: 0,
+            maxWeight: 0,
+            maxVolume: 0
+        }
+    };
 
     $rootScope.$on('logFileLoaded', function(event, args){
         buildRouteListFromEvents(EventService.getRouteEvents());
     });
 
     function buildRouteListFromEvents(events){
-        var price = events[0], cost = events[1], discontinue = events[2];
+        var priceList = events[0], costList = events[1], discontinueList = events[2];
+        var price, cost, discontinue, route;
 
-        for (var i = 0; i < price.length; i++){
-            var route = getRouteForEvent(price[i]);
+        for (var i = 0; i < priceList.length; i++){
+            price = priceList[i];
+            route = getRouteForEvent(price);
+            if (route){
+                route.priceInfo.weightCost = price.weightcost;
+                route.priceInfo.volumeCost = price.volumecost;
+            }
+            else {
+
+            }
+        }
+        for (i = 0; i < costList.length; i++){
+            cost = costList[i];
+            route = getRouteForEvent(cost);
             if (route){
 
             }
             else {
-                var newRoute = {
-                    to:
-                }
+
+            }
+        }
+        for (i = 0; i < discontinueList.length; i++){
+            discontinue = discontinueList[i];
+            route = getRouteForEvent(discontinue);
+            if (route){
+
+            }
+            else {
+
             }
         }
     }
@@ -44,7 +80,7 @@ function service(EventService, $rootScope) {
                 return route;
             }
         }
-        null;
+        return null;
     }
 
     function createRouteEvent(event){

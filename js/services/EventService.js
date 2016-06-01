@@ -71,6 +71,7 @@ function service($http, $state, $rootScope) {
                 addEventTypeToEachEvent();
                 delete eventList['_xsi:noNamespaceSchemaLocation'];
                 delete eventList['_xmlns:xsi'];
+                console.log(eventList);
                 $rootScope.$broadcast('logFileLoaded');
             },
             function(error){
