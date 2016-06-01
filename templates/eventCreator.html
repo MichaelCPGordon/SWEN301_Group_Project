@@ -88,6 +88,15 @@
             color: #fafafa;
         }
 
+        .evCr-newEventSuccess {
+            float: left;
+            width: calc(100% - 150px);
+            color: #5cb85c;
+            height: 34px;
+            margin-top: 20px;
+            line-height: 34px;
+        }
+
         .evCr-createBtn {
             float: right;
             margin: 20px 0 10px 0;
@@ -107,10 +116,12 @@
 
         <div class="evCr-eventContents">
 
-            <div ng-repeat="(key, value) in selectedEvent" ng-if="key != 'eventType'">
+            <div ng-repeat="(key, value) in selectedEvent" ng-if="key != 'eventType' && key != 'timestamp'">
                 <div class="evCr-eventAttr">
                     <div><h4>{{key}}</h4></div>
-                    <input ng-if="key != 'day'" type="text" class="form-control" ng-model="selectedEvent[key]">
+                    <input ng-if="key != 'day'" type="text" class="form-control"
+                           ng-model="selectedEvent[key]"
+                           ng-click="clearEventSuccessMessage()">
 
                     <div class="btn-group" uib-dropdown ng-if="key == 'day'">
                         <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle>
@@ -125,6 +136,10 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="evCr-newEventSuccess" ng-if="newEventSuccess">
+            Event creation successful
         </div>
 
         <button class="btn btn-success evCr-createBtn"

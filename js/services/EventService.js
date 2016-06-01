@@ -10,6 +10,7 @@ function service($http, $state, $rootScope) {
 
     var svc = {
         addEvent: addEvent,
+        getAllEvents: getAllEvents,
         readLogFile: readLogFile,
         clerkLogin: clerkLogin,
         managerLogin: managerLogin,
@@ -26,18 +27,56 @@ function service($http, $state, $rootScope) {
         eventList[event.eventType].push(event);
     }
 
+    function getAllEvents(){
+        var allEvents = [], i;
+        for (i = 0; i < eventList.cost.length; i++){
+            allEvents.push(eventList.cost[i]);
+        }
+        for (i = 0; i < eventList.price.length; i++){
+            allEvents.push(eventList.price[i]);
+        }
+        for (i = 0; i < eventList.discontinue.length; i++){
+            allEvents.push(eventList.discontinue[i]);
+        }
+        for (i = 0; i < eventList.mail.length; i++){
+            allEvents.push(eventList.mail[i]);
+        }
+        return allEvents;
+    }
+
     function readLogFile(){
         $http.get('././log.xml').then(
             function(response){
                 var x2js = new X2JS();
                 eventList = x2js.xml_str2json(response.data).simulation;
                 formatEventDatesToObjects();
+                ensureEventsAreInLists();
+                delete eventList['_xsi:noNamespaceSchemaLocation'];
+                delete eventList['_xmlns:xsi'];
                 $rootScope.$broadcast('logFileLoaded', eventList);
             },
             function(error){
                 console.log(error);
             }
         );
+    }
+
+    function ensureEventsAreInLists(){
+        if (!(eventList.cost instanceof Array)){
+            eventList.cost = [eventList.cost];
+        }
+        if (!(eventList.price instanceof Array)){
+            eventList.price = [eventList.price];
+        }
+        if (!(eventList.discontinue instanceof Array)){
+            eventList.discontinue = [eventList.discontinue];
+        }
+        if (!(eventList.mail instanceof Array)){
+            eventList.mail = [eventList.mail];
+        }
+        if (!(eventList.timelimit instanceof Array)){
+            eventList.timelimit = [eventList.timelimit];
+        }
     }
 
     function formatEventDatesToObjects(){

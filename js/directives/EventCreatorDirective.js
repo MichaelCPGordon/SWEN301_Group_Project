@@ -59,12 +59,19 @@
                     }
                 };
 
-                scope.selectedEvent = scope.eventDefaults['mail'];
+                scope.newEventSuccess = false;
+
+                scope.selectedEvent = angular.copy(scope.eventDefaults['mail']);
                 scope.eventAttrsLength = Object.keys(scope.selectedEvent).length;
+                
+                scope.clearEventSuccessMessage = function(){
+                    scope.newEventSuccess = false
+                };
 
                 scope.selectEventDefaults = function(event){
-                    scope.selectedEvent = scope.eventDefaults[event];
+                    scope.selectedEvent = angular.copy(scope.eventDefaults[event]);
                     scope.eventAttrsLength = Object.keys(scope.selectedEvent).length;
+                    scope.newEventSuccess = false;
                 };
 
                 scope.createEvent = function(){
@@ -79,6 +86,8 @@
                         else {
                             RouteService.createRouteEvent(scope.selectedEvent);
                         }
+                        scope.newEventSuccess = true;
+                        scope.selectedEvent = angular.copy(scope.eventDefaults[scope.selectedEvent.eventType]);
                     }
                 };
 
