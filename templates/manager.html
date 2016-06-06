@@ -66,6 +66,49 @@
     .manager-selectedTab {
         background-color: #5C6BC0;
     }
+
+    .manager-analyseContainer{
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+        padding: 15px;
+        background-color: #f7f7f7;
+        overflow: hidden;
+    }
+
+    .manager-eventList-container{
+        padding: 15px;
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+        overflow: hidden;
+        background-color: white;
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    .manager-eventList-container::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #ccc;
+        /*opacity: 0.5;*/
+    }
+
+    .manager-eventList-container::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .manager-eventItem{
+        height: 200px;
+        width: 90%;
+        margin: 20px 5%;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        background-color: #f7f7f7;
+    }
+
+    .manager-eventItem-panel{
+        width: 50%;
+        float: left;
+        height: 100%;
+    }
 </style>
 
 <div class="manager-header">
@@ -88,3 +131,21 @@
 </div>
 
 <event-creator ng-show="manager.pageToShow == 'newEvent'" name="'hello'"></event-creator>
+
+<div style="max-width: 1000px; height: 100%; padding: 20px; display: block; margin: 0 auto;">
+    <div class="manager-analyseContainer" ng-show="manager.pageToShow == 'analyse'">
+        <h4 style="margin-bottom: 20px;">View Events</h4>
+        <div class="manager-eventList-container">
+            <div class="manager-eventList">
+                <div class="manager-eventItem" ng-repeat="event in manager.eventList track by $index">
+                    <div class="manager-eventItem-panel">
+
+                    </div>
+                    <div class="manager-eventItem-panel">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
