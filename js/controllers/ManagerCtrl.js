@@ -10,7 +10,6 @@ function controller($scope, EventService) {
     vm.eventList = EventService.getAllEvents();
     vm.username = EventService.getUsername();
 
-    console.log(vm.eventList);
 
 
     vm.logout = logout;

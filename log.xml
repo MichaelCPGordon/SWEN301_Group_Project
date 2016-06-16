@@ -6,8 +6,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Rome</to>
     <from>Wellington</from>
     <type>Air</type>
-    <weightcost>6</weightcost>
-    <volumecost>6</volumecost>
+    <weightCost>6</weightCost>
+    <volumeCost>6</volumeCost>
     <maxWeight>350</maxWeight>
     <maxVolume>50</maxVolume>
     <duration>16</duration>
@@ -20,8 +20,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Sydney</to>
     <from>Wellington</from>
     <type>Air</type>
-    <weightcost>2</weightcost>
-    <volumecost>0</volumecost>
+    <weightCost>2</weightCost>
+    <volumeCost>0</volumeCost>
     <maxWeight>800</maxWeight>
     <maxVolume>80</maxVolume>
     <duration>3</duration>
@@ -34,8 +34,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Sydney</to>
     <from>Wellington</from>
     <type>Air</type>
-    <weightcost>2</weightcost>
-    <volumecost>1</volumecost>
+    <weightCost>2</weightCost>
+    <volumeCost>1</volumeCost>
     <maxWeight>700</maxWeight>
     <maxVolume>60</maxVolume>
     <duration>3</duration>
@@ -48,8 +48,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Wellington</to>
     <from>Auckland</from>
     <type>Land</type>
-    <weightcost>0</weightcost>
-    <volumecost>1</volumecost>
+    <weightCost>0</weightCost>
+    <volumeCost>1</volumeCost>
     <maxWeight>1200</maxWeight>
     <maxVolume>120</maxVolume>
     <duration>14</duration>
@@ -62,8 +62,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Wellington</to>
     <from>Hamilton</from>
     <type>Land</type>
-    <weightcost>0</weightcost>
-    <volumecost>1</volumecost>
+    <weightCost>0</weightCost>
+    <volumeCost>1</volumeCost>
     <maxWeight>1100</maxWeight>
     <maxVolume>130</maxVolume>
     <duration>10</duration>
@@ -76,8 +76,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Hamilton</to>
     <from>Auckland</from>
     <type>Land</type>
-    <weightcost>0</weightcost>
-    <volumecost>1</volumecost>
+    <weightCost>0</weightCost>
+    <volumeCost>1</volumeCost>
     <maxWeight>8000</maxWeight>
     <maxVolume>260</maxVolume>
     <duration>2</duration>
@@ -90,8 +90,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Rome</to>
     <from>Sydney</from>
     <type>Air</type>
-    <weightcost>2</weightcost>
-    <volumecost>3</volumecost>
+    <weightCost>2</weightCost>
+    <volumeCost>3</volumeCost>
     <maxWeight>120</maxWeight>
     <maxVolume>140</maxVolume>
     <duration>12</duration>
@@ -104,8 +104,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Suva</to>
     <from>Sydney</from>
     <type>Sea</type>
-    <weightcost>3</weightcost>
-    <volumecost>3</volumecost>
+    <weightCost>3</weightCost>
+    <volumeCost>3</volumeCost>
     <maxWeight>100</maxWeight>
     <maxVolume>100</maxVolume>
     <duration>36</duration>
@@ -118,8 +118,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Rome</to>
     <from>Auckland</from>
     <type>Sea</type>
-    <weightcost>5</weightcost>
-    <volumecost>4</volumecost>
+    <weightCost>5</weightCost>
+    <volumeCost>4</volumeCost>
     <maxWeight>1000</maxWeight>
     <maxVolume>1000</maxVolume>
     <duration>36</duration>
@@ -131,48 +131,48 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Rome</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
-    <weightcost>6</weightcost>
-    <volumecost>8</volumecost>
+    <weightCost>6</weightCost>
+    <volumeCost>8</volumeCost>
   </price>
   <price>
     <timestamp>2016,05,24,14,40,00,00</timestamp>
     <to>Sydney</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
-    <weightcost>3</weightcost>
-    <volumecost>2</volumecost>
+    <weightCost>3</weightCost>
+    <volumeCost>2</volumeCost>
   </price>
   <price>
     <timestamp>2016,05,24,14,41,00,00</timestamp>
     <to>Suva</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
-    <weightcost>4</weightcost>
-    <volumecost>4</volumecost>
+    <weightCost>4</weightCost>
+    <volumeCost>4</volumeCost>
   </price>
   <price>
     <timestamp>2016,05,24,14,42,00,00</timestamp>
     <to>Suva</to>
     <from>New Zealand</from>
     <priority>International Standard</priority>
-    <weightcost>3</weightcost>
-    <volumecost>2</volumecost>
+    <weightCost>3</weightCost>
+    <volumeCost>2</volumeCost>
   </price>
   <price>
-    <timestamp>2016,05,24,14,43,00,00</timestamp>
-    <to>New Zealand</to>
-    <from>New Zealand</from>
-    <priority>Domestic Standard</priority>
-    <weightcost>1</weightcost>
-    <volumecost>1</volumecost>
-  </price>
+  <timestamp>2016,05,24,14,43,00,00</timestamp>
+  <to>New Zealand</to>
+  <from>New Zealand</from>
+  <priority>Domestic Standard</priority>
+  <weightCost>1</weightCost>
+  <volumeCost>1</volumeCost>
+</price>
   <price>
     <timestamp>2016,05,24,14,44,00,00</timestamp>
     <to>New Zealand</to>
     <from>New Zealand</from>
     <priority>Domestic Air</priority>
-    <weightcost>1</weightcost>
-    <volumecost>2</volumecost>
+    <weightCost>1</weightCost>
+    <volumeCost>2</volumeCost>
   </price>
   <mail>
     <timestamp>2016,05,24,14,45,00,00</timestamp>
@@ -230,8 +230,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Sydney</to>
     <from>Wellington</from>
     <type>Air</type>
-    <weightcost>2</weightcost>
-    <volumecost>1</volumecost>
+    <weightCost>2</weightCost>
+    <volumeCost>1</volumeCost>
     <maxWeight>120</maxWeight>
     <maxVolume>150</maxVolume>
     <duration>3</duration>
@@ -243,8 +243,8 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <to>Sydney</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
-    <weightcost>3</weightcost>
-    <volumecost>3</volumecost>
+    <weightCost>3</weightCost>
+    <volumeCost>3</volumeCost>
   </price>
   <mail>
     <timestamp>2016,05,24,14,53,00,00</timestamp>
