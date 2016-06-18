@@ -8,6 +8,8 @@ function service($http, $state, $rootScope) {
     var username = "";
     var eventList;
 
+    var nzLocations = ["Auckland", "Wellington", "Hamilton"];
+
     var svc = {
         addEvent: addEvent,
         getAllEvents: getAllEvents,
@@ -18,7 +20,9 @@ function service($http, $state, $rootScope) {
         isLoggedIn: isLoggedIn,
         getUsername: getUsername,
         getMailEvents: getMailEvents,
-        getRouteEvents: getRouteEvents
+        getRouteEvents: getRouteEvents,
+        routeIsInternational: routeIsInternational,
+        locationIsInNz: locationIsInNz
     };
 
     function addEvent(event){
@@ -137,6 +141,19 @@ function service($http, $state, $rootScope) {
             return obj.getFullYear() + "," + (obj.getMonth() + 1) + "," + obj.getDay() + "," +
                 obj.getHours().toFixed(2) + "," + obj.getMinutes().toFixed(2) + "," + obj.getSeconds().toFixed(2);
         }
+    }
+
+    function locationIsInNz(location){
+        for (var i = 0; i < nzLocations.length; i++){
+            if (location == nzLocations[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function routeIsInternational(to, from) {
+        return !locationIsInNz(to) || !locationIsInNz(from);
     }
 
     function getMailEvents(){

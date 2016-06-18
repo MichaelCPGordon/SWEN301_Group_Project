@@ -1,0 +1,55 @@
+<div class="evCr-eventAttr">
+    <div><h4>Route</h4></div>
+    <div class="btn-group" uib-dropdown>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            <b>{{selectedEvent.route.to}}</b> to <b>{{selectedEvent.route.from}}</b>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+            <li role="menuitem"
+                ng-repeat="route in activeRoutes"
+                ng-click="selectedEvent.route = route"><b>{{route.to}}</b> to <b>{{route.from}}</b></li>
+        </ul>
+    </div>
+</div>
+
+<div class="evCr-eventAttr">
+    <div><h4>Priority</h4></div>
+    <div class="btn-group" uib-dropdown>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            <b ng-show="selectedEvent.highPriority == true">High</b>
+            <b ng-show="selectedEvent.highPriority == false">Low</b>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+            <li role="menuitem"
+                ng-click="selectedEvent.highPriority = true"><b>High</b></li>
+            <li role="menuitem"
+                ng-click="selectedEvent.highPriority = false"><b>Low</b></li>
+        </ul>
+    </div>
+</div>
+
+<div class="evCr-eventAttr" ng-click="clearEventSuccessMessage()">
+    <div><h4>Day</h4></div>
+    <div class="btn-group" uib-dropdown>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            <b>{{selectedEvent.day}}</b>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+            <li role="menuitem"
+                ng-repeat="day in dayOptions"
+                ng-click="selectedEvent.day = day">{{day}}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Weight <label style="font-size: 10px;">(gm)</label></h4></div>
+    <input type="number" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.weight">
+</div>
+
+<div class="evCr-eventAttr">
+    <div><h4>Volume <label style="font-size: 10px;">(cubic cm)</label></h4></div>
+    <input type="number" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.volume">
+</div>

@@ -100,6 +100,7 @@
         .evCr-createBtn {
             float: right;
             margin: 20px 0 10px 0;
+            width: 120px;
         }
     </style>
 
@@ -108,33 +109,29 @@
         <h4 style="margin-bottom: 20px;">Create Event</h4>
 
         <uib-tabset active="activeJustified" justified="true">
-            <uib-tab index="0" heading="Mail delivery" ng-click="selectEventDefaults('mail')"></uib-tab>
-            <uib-tab index="1" heading="Customer Prices" ng-click="selectEventDefaults('price')"></uib-tab>
-            <uib-tab index="2" heading="Transport Cost" ng-click="selectEventDefaults('cost')"></uib-tab>
-            <uib-tab index="3" heading="Discontinue" ng-click="selectEventDefaults('discontinue')"></uib-tab>
+            <uib-tab index="0" heading="Add Mail" ng-click="selectEventDefaults('mail')"></uib-tab>
+            <uib-tab index="1" heading="Update Route Price" ng-click="selectEventDefaults('price')"></uib-tab>
+            <uib-tab index="2" heading="Update Route Cost" ng-click="selectEventDefaults('cost')"></uib-tab>
+            <uib-tab index="3" heading="Add Route" ng-click="selectEventDefaults('newRoute')"></uib-tab>
+            <uib-tab index="4" heading="Discontinue Route Transport" ng-click="selectEventDefaults('discontinue')"></uib-tab>
         </uib-tabset>
 
-        <div class="evCr-eventContents">
+        <div class="evCr-eventContents" ng-click="clearEventMessages()">
 
-            <div ng-repeat="(key, value) in selectedEvent" ng-if="key != 'eventType' && key != 'timestamp'">
-                <div class="evCr-eventAttr">
-                    <div><h4>{{key}}</h4></div>
-                    <input ng-if="key != 'day'" type="text" class="form-control"
-                           ng-model="selectedEvent[key]"
-                           ng-click="clearEventSuccessMessage()">
+            <div ng-show="selectedEvent.eventType == 'mail'"
+                 ng-include src="'templates/mailEventForm.html'"></div>
 
-                    <div class="btn-group" uib-dropdown ng-if="key == 'day'">
-                        <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle>
-                            {{selectedEvent[key]}}
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                            <li role="menuitem"
-                                ng-repeat="day in dayOptions"
-                                ng-click="selectedEvent[key] = dayOptions[$index]">{{day}}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <div ng-show="selectedEvent.eventType == 'price'"
+                 ng-include src="'templates/priceEventForm.html'"></div>
+
+            <div ng-show="selectedEvent.eventType == 'cost'"
+                 ng-include src="'templates/costEventForm.html'"></div>
+
+            <div ng-show="selectedEvent.eventType == 'newRoute'"
+                 ng-include src="'templates/newRouteForm.html'"></div>
+
+            <div ng-show="selectedEvent.eventType == 'discontinue'"
+                 ng-include src="'templates/discontinueEventForm.html'"></div>
 
         </div>
 
@@ -142,9 +139,16 @@
             Event creation successful
         </div>
 
+        <div class="evCr-newEventSuccess" ng-if="eventCreationError.length > 0" style="color: #B71C1C;">
+            {{eventCreationError}}
+        </div>
+
         <button class="btn btn-success evCr-createBtn"
                 ng-click="createEvent()">
-            Create Event
+            <div ng-show="selectedEvent.eventType == 'mail' || selectedEvent.eventType == 'newRoute'">Add</div>
+            <div ng-show="selectedEvent.eventType == 'price'">Update</div>
+            <div ng-show="selectedEvent.eventType == 'cost'">Update</div>
+            <div ng-show="selectedEvent.eventType == 'discontinue'">Discontinue</div>
         </button>
 
     </div>

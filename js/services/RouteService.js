@@ -5,10 +5,11 @@ angular.module('kps')
 function service(EventService, $rootScope) {
 
     var routeList = [];
-    var nzLocations = ["Auckland", "Wellington", "Hamilton"];
+    
 
     var svc = {
-        createRouteEvent: createRouteEvent
+        getRouteList: getRouteList,
+        createDiscontinueEvent: createDiscontinueEvent
     };
 
 
@@ -42,8 +43,34 @@ function service(EventService, $rootScope) {
         buildRouteListFromEvents(EventService.getRouteEvents());
     });
 
-    function createRouteEvent(){
+    function createDiscontinueEvent(eventData){
+        var event = {
+            to: eventData.route.to,
+            from: eventData.route.from,
+            company: eventData.transport.company,
+            type: eventData.transport.type,
+            eventType: "discontinue"
+        };
+        discontinueTransport(event);
+        EventService.addEvent(event);
+    }
 
+    function getRouteList(){
+        return routeList;
+    }
+
+    function discontinueTransport(ev){
+        for (var i = 0; i < routeList.length; i++){
+            var route = routeList[i];
+            if (route.to == ev.to && route.from == ev.from){
+                for (var j = 0; j < route.transportList.length; j++){
+                    var transport = route.transportList[j];
+                    if (transport.company == ev.company && transport.type == ev.type){
+                        transport.discontinued = true;
+                    }
+                }
+            }
+        }
     }
 
     function buildRouteListFromEvents(events){
@@ -116,9 +143,6 @@ function service(EventService, $rootScope) {
                 console.log(discontinue);
             }
         }
-
-
-        console.log(routeList);
     }
 
     function createNewRoute(costData){
@@ -187,7 +211,7 @@ function service(EventService, $rootScope) {
         if (to == "New Zealand" && from == "New Zealand"){
             for (i = 0; i < routeList.length; i++){
                 route = routeList[i];
-                if (locationIsInNz(route.to) && locationIsInNz(route.from)){
+                if (EventService.locationIsInNz(route.to) && EventService.locationIsInNz(route.from)){
                     routes.push(route);
                 }
             }
@@ -195,7 +219,7 @@ function service(EventService, $rootScope) {
         else if (from == "New Zealand"){
             for (i = 0; i < routeList.length; i++){
                 route = routeList[i];
-                if (route.to == to && locationIsInNz(route.from)){
+                if (route.to == to && EventService.locationIsInNz(route.from)){
                     routes.push(route);
                 }
             }
@@ -203,7 +227,7 @@ function service(EventService, $rootScope) {
         else if (to == "New Zealand"){
             for (i = 0; i < routeList.length; i++){
                 route = routeList[i];
-                if (locationIsInNz(route.to) && route.from == from){
+                if (EventService.locationIsInNz(route.to) && route.from == from){
                     routes.push(route);
                 }
             }
@@ -219,15 +243,6 @@ function service(EventService, $rootScope) {
             }
         }
         return null;
-    }
-
-    function locationIsInNz(location){
-        for (var i = 0; i < nzLocations.length; i++){
-            if (location == nzLocations[i]){
-                return true;
-            }
-        }
-        return false;
     }
 
     return svc;
