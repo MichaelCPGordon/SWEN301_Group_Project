@@ -17,13 +17,13 @@
     <div class="btn-group" uib-dropdown>
         <button type="button" class="btn btn-default" uib-dropdown-toggle>
             <b ng-show="selectedEvent.highPriority == true">High</b>
-            <b ng-show="selectedEvent.highPriority == false">Low</b>
+            <b ng-show="selectedEvent.highPriority == false">Standard</b>
         </button>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
             <li role="menuitem"
                 ng-click="selectedEvent.highPriority = true"><b>High</b></li>
             <li role="menuitem"
-                ng-click="selectedEvent.highPriority = false"><b>Low</b></li>
+                ng-click="selectedEvent.highPriority = false"><b>Standard</b></li>
         </ul>
     </div>
 </div>
