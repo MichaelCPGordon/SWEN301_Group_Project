@@ -11,7 +11,9 @@
             scope: {},
             templateUrl: "templates/figures.html",
             link: function (scope) {
-
+                scope.toggleExtras = function () {
+                    $("#extras").slideToggle(500);
+                };
             }
         }
     }

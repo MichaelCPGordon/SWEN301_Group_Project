@@ -1,47 +1,73 @@
-<div id = "bar">
-    <div id = "first" class = "segment">
-        <div style = "width: 50%; height: 100%; float: left;">
-            <span class = "label label-info">
-                Revenue
+<div id = "figuresBar" ng-mouseenter="toggleExtras()" ng-mouseleave="toggleExtras()">
+    <div class = "bar">
+        <div class = "first segment">
+            <div style = "width: 50%; height: 100%; float: left;">
+                <span class = "label label-info" style = "font-size: 100%;">
+                    Revenue
+                </span>
+                <div class = "gap">&nbsp</div>
+                <span class = "segTitle grey">
+                    Daily: $389.98
+                </span>
+                <div class = "gap">&nbsp</div>
+                <span class = "segTitle grey">
+                    Weekly: $5865.78
+                </span>
+            </div>
+            <div style = "width: 49%; height: 100%; float: right;">
+                <!--
+                <canvas id="barChart" class="chart chart-bar"
+                        chart-data="data" chart-labels="labels"> chart-series="series"
+                </canvas>
+                -->
+            </div>
+        </div>
+        <div class = "second segment">
+            <span class = "label label-success" style = "font-size: 100%;">
+                Expenditure
             </span>
             <div class = "gap">&nbsp</div>
             <span class = "segTitle grey">
-                Daily: $389.98
+                Daily: $165.67
             </span>
-                <div class = "gap">&nbsp</div>
+            <div class = "gap">&nbsp</div>
             <span class = "segTitle grey">
-                Weekly: $5865.78
+                Weekly: $1345.62
             </span>
         </div>
-        <div style = "width: 49%; height: 100%; float: right;">
-            <!--
-            <canvas id="barChart" class="chart chart-bar"
-                    chart-data="data" chart-labels="labels"> chart-series="series"
-            </canvas>
-            -->
+        <div class = "third segment">
+            <span class = "label label-warning" style = "font-size: 100%;">
+                Delivery Times
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Average: 12.6hrs
+            </span>
         </div>
     </div>
-    <div id = "second" class = "segment">
-        <span class = "label label-success">
-            Expenditure
-        </span>
-        <div class = "gap">&nbsp</div>
-        <span class = "segTitle grey">
-            Daily: $165.67
-        </span>
-        <div class = "gap">&nbsp</div>
-        <span class = "segTitle grey">
-            Weekly: $1345.62
-        </span>
-    </div>
-    <div id = "third" class = "segment">
-        <span class = "label label-warning">
-            Delivery Times
-        </span>
-        <div class = "gap">&nbsp</div>
-        <span class = "segTitle grey">
-            Average: 12.6hrs
-        </span>
+    <div class = "bar" id = "extras" style = "display: none">
+        <div class = "first segment">
+            <span class = "segTitle grey">
+                Extra stuff: ???
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Extra stuff: ???
+            </span>
+        </div>
+        <div class = "second segment">
+            <span class = "segTitle grey">
+                Extra stuff: ???
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Extra stuff: ???
+            </span>
+        </div>
+        <div class = "third segment">
+            <span class = "segTitle grey">
+                Extra stuff: ???
+            </span>
+        </div>
     </div>
 </div>
-
