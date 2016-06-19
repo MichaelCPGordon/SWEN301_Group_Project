@@ -8,7 +8,7 @@ function service($http, $state, $rootScope) {
     var username = "";
     var eventList;
 
-    var nzLocations = ["Auckland", "Wellington", "Hamilton"];
+    var nzLocations = ["Auckland", "Wellington", "Hamilton", "Rotorua", "Palmerston North", "Christchurch", "Dunedin"];
 
     var svc = {
         addEvent: addEvent,
