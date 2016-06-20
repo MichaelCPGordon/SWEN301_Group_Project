@@ -35,6 +35,7 @@
                 };
 
                 scope.createEvent = function(){
+                    console.log(scope.selectedEvent);
                     var invalidAttrs = scope.eventDataVerified(scope.selectedEvent);
                     if (invalidAttrs.length > 0){
                         scope.displayInvalidFieldsModal(invalidAttrs);
@@ -56,10 +57,16 @@
                             }
                         }
                         else if (scope.selectedEvent.eventType == 'price') {
-                            
+                            RouteService.updatePriceEvent(scope.selectedEvent);
+                            eventSuccess();
                         }
                         else if (scope.selectedEvent.eventType == 'cost') {
-                            
+                            RouteService.updateCostEvent(scope.selectedEvent);
+                            eventSuccess();
+                        }
+                        else if (scope.selectedEvent.eventType == 'newRoute') {
+                            RouteService.addRoute(scope.selectedEvent);
+                            eventSuccess();
                         }
                     }
 
@@ -88,6 +95,10 @@
                     else if (ev.eventType == "cost"){
                         verifyIntegerAttrs(["weightCost", "volumeCost", "maxWeight", "maxVolume", "duration", "frequency"]);
                     }
+                    else if (ev.eventType == "newRoute"){
+                        verifyIntegerAttrs(["weightCost", "volumeCost", "maxWeight", "maxVolume", "duration", "frequency"]);
+                    }
+
                     else if (ev.eventType == "discontinue"){
 
                     }
@@ -188,7 +199,7 @@
                         cost: {
                             eventType: "cost",
                             route: scope.activeRoutes[0],
-                            company: "",
+                            company: scope.activeRoutes[0].transportList[0],
                             day: scope.dayOptions[0],
                             highPriority: false,
                             weightCost: 0,
@@ -203,6 +214,7 @@
                             company: "",
                             to: "",
                             from: "",
+                            type: "",
                             highPriority: false,
                             weightCost: 0,
                             volumeCost: 0,

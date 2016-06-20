@@ -11,7 +11,10 @@ function service(EventService, $rootScope) {
     var svc = {
         getRouteList: getRouteList,
         getFilteredRouteList: getFilteredRouteList,
-        createDiscontinueEvent: createDiscontinueEvent
+        createDiscontinueEvent: createDiscontinueEvent,
+		updatePriceEvent: updatePriceEvent,
+        updateCostEvent: updateCostEvent,
+        addRoute: addRoute
     };
 
 
@@ -45,6 +48,56 @@ function service(EventService, $rootScope) {
         buildRouteListFromEvents(EventService.getRouteEvents());
     });
 
+	function updatePriceEvent(eventData){
+        
+        var route = findRoute(eventData.route.to, eventData.route.from);
+        
+        if(!route){console.log("Route not found");return;}
+
+        if(eventData.highPriority){
+            route.airPriceInfo.volumeCost = "" + eventData.volumeCost;
+            route.airPriceInfo.weightCost = "" + eventData.weightCost;
+        }
+        else{
+            route.standardPriceInfo.volumeCost = "" + eventData.volumeCost;
+            route.standardPriceInfo.weightCost = "" + eventData.weightCost;
+        }
+    }
+
+    function updateCostEvent(eventData){
+
+        console.log(eventData);
+
+        var route = findRoute(eventData.route.to, eventData.route.from);
+
+        if(!route){console.log("Route not found");return;}
+
+        var index = findTransportIndexInList(eventData.company.company, eventData.company.type, route.transportList);
+        // var transport = eventData.transport;
+
+        route.transportList[index] = eventData.transport;
+
+        // var costData = {
+        //     maxWeight: eventData.company.maxWeight,
+        //     maxVolume: eventData.company.maxVolume,
+        //     weightCost: eventData.company.weightCost,
+        //     volumeCost: eventData.company.volumeCost,
+        //     frequency: eventData.company.frequency,
+        //     duration: eventData.company.duration
+        // };
+        //
+        // updateTransportListItem(transport, costData);
+
+        console.log(routeList);
+        
+    }
+    
+    function addRoute(eventData){
+        
+        
+        
+    }
+	
     function createDiscontinueEvent(eventData){
         var event = {
             to: eventData.route.to,

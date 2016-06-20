@@ -1,1 +1,67 @@
-Cost
+<div class="evCr-eventAttr">
+    <div><h4>Route</h4></div>
+    <div class="btn-group" uib-dropdown>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            <b>{{selectedEvent.route.to}}</b> to <b>{{selectedEvent.route.from}}</b>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+            <li role="menuitem"
+                ng-repeat="route in activeRoutes"
+                ng-click="selectedEvent.route = route; selectedEvent.transport = route.transportList[0]">
+                <b>{{route.to}}</b> to <b>{{route.from}}</b>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="evCr-eventAttr">
+    <div><h4>Company</h4></div>
+    <div class="btn-group" uib-dropdown>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            <b>{{selectedEvent.transport.company}}</b> <b>({{selectedEvent.transport.type}})</b>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+            <li role="menuitem"
+                ng-repeat="transport in selectedEvent.route.transportList"
+                ng-click="selectedEvent.transport = transport">
+                <b>{{transport.company}}</b> <b>({{transport.type}})</b>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Weight Cost <label style="font-size: 10px;"></label></h4></div>
+    <input type="string" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.transport.weightCost">
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Volume Cost <label style="font-size: 10px;"></label></h4></div>
+    <input type="string" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.transport.volumeCost">
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Max Weight <label style="font-size: 10px;">(g)</label></h4></div>
+    <input type="string" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.transport.maxWeight">
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Max Volume <label style="font-size: 10px;">(g)</label></h4></div>
+    <input type="string" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.transport.maxVolume">
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Duration <label style="font-size: 10px;"></label></h4></div>
+    <input type="string" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.transport.duration">
+</div>
+
+<div class="evCr-eventAttr" >
+    <div><h4>Frequency <label style="font-size: 10px;"></label></h4></div>
+    <input type="string" class="form-control" style="font-weight: bold"
+           ng-model="selectedEvent.transport.frequency">
+</div>
