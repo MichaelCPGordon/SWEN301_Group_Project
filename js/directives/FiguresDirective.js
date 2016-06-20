@@ -12,18 +12,15 @@
             templateUrl: "templates/figures.html",
             link: function (scope) {
                 scope.toggleExtras = function () {
+                    scope.figuresExpanded = !scope.figuresExpanded;
                     $("#extras").slideToggle(500);
                 };
+                scope.figuresExpanded = false;
 
-                scope.eventListLength = EventService.getAllEvents().length;
-                scope.numberMailItems = MailService.getMailList().length;
+                scope.timeFilterUpdated = timeFilterUpdated;
 
                 initialiseTimerFilter();
-
-                scope.mailList = MailService.getFilteredMailList(scope.timeFilter);
-                scope.RouteList = RouteService.getFilteredRouteList(scope.timeFilter);
-
-
+                timeFilterUpdated();
 
 
                 function initialiseTimerFilter(){
@@ -37,11 +34,14 @@
                     };
                 }
 
-                scope.timeFilterUpdated = function(){
+                function timeFilterUpdated(){
                     scope.mailList = MailService.getFilteredMailList(scope.timeFilter);
                     scope.RouteList = RouteService.getFilteredRouteList(scope.timeFilter);
+
+                    scope.eventListLength = EventService.getFilteredEvents(scope.timeFilter).length;
+                    scope.numberMailItems = scope.mailList.length;
                     //TODO Update figures here
-                };
+                }
 
                 //Total weight value of all mail
                 function getTotalMailWeight() {

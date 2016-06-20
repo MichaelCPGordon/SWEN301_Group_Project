@@ -1,7 +1,7 @@
 <simulation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="postal.xsd">
   <cost>
-    <timestamp>2016,05,24,14,30,00,00</timestamp>
+    <timestamp>2016,05,20,14,30,00,00</timestamp>
     <company>Air NZ</company>
     <to>Rome</to>
     <from>Wellington</from>
@@ -15,7 +15,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Thursday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,31,00,00</timestamp>
+    <timestamp>2016,05,20,14,31,00,00</timestamp>
     <company>Kelburn Airways</company>
     <to>Sydney</to>
     <from>Wellington</from>
@@ -29,7 +29,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Friday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,32,00,00</timestamp>
+    <timestamp>2016,05,20,14,32,00,00</timestamp>
     <company>Qantas</company>
     <to>Sydney</to>
     <from>Wellington</from>
@@ -43,7 +43,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Monday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,33,00,00</timestamp>
+    <timestamp>2016,05,20,14,33,00,00</timestamp>
     <company>Kelburn Freight</company>
     <to>Wellington</to>
     <from>Auckland</from>
@@ -57,7 +57,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Thursday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,34,00,00</timestamp>
+    <timestamp>2016,05,20,14,34,00,00</timestamp>
     <company>Kelburn Freight</company>
     <to>Wellington</to>
     <from>Hamilton</from>
@@ -71,7 +71,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Tuesday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,35,00,00</timestamp>
+    <timestamp>2016,05,20,14,35,00,00</timestamp>
     <company>Rodney's Longhaul</company>
     <to>Hamilton</to>
     <from>Auckland</from>
@@ -85,7 +85,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Monday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,36,00,00</timestamp>
+    <timestamp>2016,05,20,14,36,00,00</timestamp>
     <company>Roman Air Freight Ltd</company>
     <to>Rome</to>
     <from>Sydney</from>
@@ -99,7 +99,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Monday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,37,00,00</timestamp>
+    <timestamp>2016,05,20,14,37,00,00</timestamp>
     <company>Pacifica Merchants</company>
     <to>Suva</to>
     <from>Sydney</from>
@@ -113,7 +113,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Monday</day>
   </cost>
   <cost>
-    <timestamp>2016,05,24,14,38,00,00</timestamp>
+    <timestamp>2016,05,20,14,38,00,00</timestamp>
     <company>Davy Jones Ltd</company>
     <to>Rome</to>
     <from>Auckland</from>
@@ -127,7 +127,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Monday</day>
   </cost>
   <price>
-    <timestamp>2016,05,24,14,39,00,00</timestamp>
+    <timestamp>2016,05,20,14,39,00,00</timestamp>
     <to>Rome</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
@@ -135,7 +135,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <volumeCost>8</volumeCost>
   </price>
   <price>
-    <timestamp>2016,05,24,14,40,00,00</timestamp>
+    <timestamp>2016,05,20,14,40,00,00</timestamp>
     <to>Sydney</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
@@ -143,7 +143,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <volumeCost>2</volumeCost>
   </price>
   <price>
-    <timestamp>2016,05,24,14,41,00,00</timestamp>
+    <timestamp>2016,05,20,14,41,00,00</timestamp>
     <to>Suva</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
@@ -151,7 +151,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <volumeCost>4</volumeCost>
   </price>
   <price>
-    <timestamp>2016,05,24,14,42,00,00</timestamp>
+    <timestamp>2016,05,20,14,42,00,00</timestamp>
     <to>Suva</to>
     <from>New Zealand</from>
     <priority>International Standard</priority>
@@ -159,7 +159,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <volumeCost>2</volumeCost>
   </price>
   <price>
-  <timestamp>2016,05,24,14,43,00,00</timestamp>
+  <timestamp>2016,05,20,14,43,00,00</timestamp>
   <to>New Zealand</to>
   <from>New Zealand</from>
   <priority>Domestic Standard</priority>
@@ -167,7 +167,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
   <volumeCost>1</volumeCost>
 </price>
   <price>
-    <timestamp>2016,05,24,14,44,00,00</timestamp>
+    <timestamp>2016,05,20,14,44,00,00</timestamp>
     <to>New Zealand</to>
     <from>New Zealand</from>
     <priority>Domestic Air</priority>
@@ -175,7 +175,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <volumeCost>2</volumeCost>
   </price>
   <mail>
-    <timestamp>2016,05,24,14,45,00,00</timestamp>
+    <timestamp>2016,05,20,14,45,00,00</timestamp>
     <day>Monday</day>
     <to>Rome</to>
     <from>Wellington</from>
@@ -184,7 +184,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Air</priority>
   </mail>
   <mail>
-    <timestamp>2016,05,24,14,46,00,00</timestamp>
+    <timestamp>2016,05,20,14,46,00,00</timestamp>
     <day>Monday</day>
     <to>Sydney</to>
     <from>Wellington</from>
@@ -193,7 +193,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Air</priority>
   </mail>
   <mail>
-    <timestamp>2016,05,24,14,47,00,00</timestamp>
+    <timestamp>2016,05,20,14,47,00,00</timestamp>
     <day>Tuesday</day>
     <to>Rome</to>
     <from>Wellington</from>
@@ -202,14 +202,14 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Air</priority>
   </mail>
   <timelimit>
-    <timestamp>2016,05,24,14,48,00,00</timestamp>
+    <timestamp>2016,05,20,14,48,00,00</timestamp>
     <to>Wellington</to>
     <from>Rome</from>
     <priority>International Air</priority>
     <maxDeliveryTime>4</maxDeliveryTime>	
   </timelimit>
   <mail>
-    <timestamp>2016,05,24,14,49,00,00</timestamp>
+    <timestamp>2016,05,20,14,49,00,00</timestamp>
     <day>Thursday</day>
     <to>Suva</to>
     <from>Wellington</from>
@@ -218,14 +218,14 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Standard</priority>
   </mail>
   <discontinue>
-    <timestamp>2016,05,24,14,50,00,00</timestamp>
+    <timestamp>2016,05,20,14,50,00,00</timestamp>
     <company>Kelburn Airways</company>
     <to>Sydney</to>
     <from>Wellington</from>
     <type>Air</type>
   </discontinue>
   <cost>
-    <timestamp>2016,05,24,14,51,00,00</timestamp>
+    <timestamp>2016,05,20,14,51,00,00</timestamp>
     <company>Qantas</company>
     <to>Sydney</to>
     <from>Wellington</from>
@@ -239,7 +239,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <day>Monday</day>
   </cost>
   <price>
-    <timestamp>2016,05,24,14,52,00,00</timestamp>
+    <timestamp>2016,05,20,14,52,00,00</timestamp>
     <to>Sydney</to>
     <from>New Zealand</from>
     <priority>International Air</priority>
@@ -247,7 +247,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <volumeCost>3</volumeCost>
   </price>
   <mail>
-    <timestamp>2016,05,24,14,53,00,00</timestamp>
+    <timestamp>2016,05,20,14,53,00,00</timestamp>
     <day>Thursday</day>
     <to>Wellington</to>
     <from>Auckland</from>
@@ -256,7 +256,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>Domestic Standard</priority>
   </mail>
   <mail>
-    <timestamp>2016,05,24,14,54,00,00</timestamp>
+    <timestamp>2016,05,20,14,54,00,00</timestamp>
     <day>Friday</day>
     <to>Rome</to>
     <from>Hamilton</from>
@@ -265,7 +265,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Air</priority>
   </mail>
   <mail>
-    <timestamp>2016,05,24,14,55,00,00</timestamp>
+    <timestamp>2016,05,20,14,55,00,00</timestamp>
     <day>Wednesday</day>
     <to>Rome</to>
     <from>Hamilton</from>
@@ -274,7 +274,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Standard</priority>
   </mail>
   <mail>
-    <timestamp>2016,05,24,14,56,00,00</timestamp>
+    <timestamp>2016,05,20,14,56,00,00</timestamp>
     <day>Wednesday</day>
     <to>Sydney</to>
     <from>Auckland</from>
@@ -283,7 +283,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
     <priority>International Standard</priority>
   </mail>
   <mail>
-    <timestamp>2016,05,24,14,57,00,00</timestamp>
+    <timestamp>2016,05,20,14,57,00,00</timestamp>
     <day>Friday</day>
     <to>Rome</to>
     <from>Wellington</from>
