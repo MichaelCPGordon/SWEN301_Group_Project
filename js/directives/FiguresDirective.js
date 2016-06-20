@@ -185,11 +185,57 @@
                 //finds the critical routes
                 function criticalRoutes(){
                     var criticalRoutes = [];
-
-
-
+                    var customerCost = 0;
+                    for(var i=0; i < scope.mailList.length; i++) {
+                        console.log(scope.mailList.length);
+                        var routeList = RouteService.getRouteList()
+                        for (var j = 0; j < routeList.length; j++) {
+                            if (scope.mailList[i].from == routeList[j].from && scope.mailList[i].to == routeList[j].to) {
+                                if (scope.mailList[i].priority == "International Air" || scope.mailList[i].priority == "Domestic Air") {
+                                    customerCost = (scope.mailList[i].weight * routeList[j].airPriceInfo.weightCost);
+                                    customerCost += (scope.mailList[i].volume * routeList[j].airPriceInfo.volumeCost);
+                                    console.log(customerCost);
+                                    if(comparePrices(routeList[j],scope.mailList[i],customerCost)){
+                                        criticalRoutes.push(routeList[j]);
+                                    }
+                                }
+                                else if (scope.mailList[i].priority == "International Standard" || scope.mailList[i].priority == "Domestic Standard") {
+                                    customerCost = (scope.mailList[i].weight * routeList[j].airPriceInfo.weightCost);
+                                    customerCost += (scope.mailList[i].volume * routeList[j].airPriceInfo.volumeCost);
+                                    if(comparePrices(routeList[j],scope.mailList[i],customerCost)){
+                                        criticalRoutes.push(routeList[j]);
+                                    }
+                                }
+                            }
+                        }
+                    }
                     return criticalRoutes;
                 }
+
+                // assisting method for critical routes
+                function comparePrices(route,mailItem,customerCost){
+                    var kpsCost = 0;
+                    for(var i = 0; i < route.transportList.length; i++){
+                        if(route.transportList[i].type == "Air") {
+                            kpsCost = mailItem.weight * route.transportList[i].weightCost;
+                            kpsCost += mailItem.volume * route.transportList[i].volumeCost;
+                            console.log(kpsCost);
+                            if (kpsCost > customerCost) {
+                                return true;
+                            }
+                        }
+                        else if(route.transportList[i].type == "Sea" || route.transportList[i].type == "Land"){
+                            kpsCost = mailItem.weight * route.transportList[i].weightCost;
+                            kpsCost += mailItem.volume * route.transportList[i].volumeCost;
+                            if (kpsCost > customerCost) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+                scope.critical = criticalRoutes();
+                console.log(scope.critical);
             }
         }
     }
