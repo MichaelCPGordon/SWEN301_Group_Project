@@ -14,11 +14,6 @@
                 scope.toggleExtras = function () {
                     $("#extras").slideToggle(500);
                 };
-
-                scope.averageTimeCalculationTo = "Sydney";
-                scope.averageTimeCalculationFrom = "Wellington";
-                scope.hoursTag1 = "Hours";
-                scope.hoursTag2 = "Hours";
                 
                 //total amount of events
                 scope.eventListLength = EventService.getAllEvents().length;
@@ -132,7 +127,7 @@
 
 
                 //finding the average Delivery times
-                function averageDeliveryTime( from , to ){
+                function averageDeliveryTime( route ){
                     var routeList = RouteService.getRouteList();
                     var transportList = null;
                     var airCount = 0;
@@ -140,7 +135,7 @@
                     var aveAir = 0;
                     var aveStandard = 0;
                     for(var i = 0; i < routeList.length; i++){
-                        if(routeList[i].to == to && routeList[i].from == from){
+                        if(routeList[i].to == route.to && routeList[i].from == route.from){
                             transportList = routeList[i].transportList;
                         }
                     }
@@ -180,7 +175,8 @@
                     }
                     
                 }
-                scope.averages = averageDeliveryTime("Wellington", "Sydney");
+                scope.placeHolder = RouteService.getRouteList();
+                scope.averages = averageDeliveryTime(scope.placeHolder[0]);
 
 
                 //finds the critical routes

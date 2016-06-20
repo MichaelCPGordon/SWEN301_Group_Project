@@ -89,11 +89,11 @@
             </span>
             <div class = "gap">&nbsp</div>
             <span class = "segTitle grey">
-                Priority: AIR: {{ averages[0] }} {{ hoursTag1 }}
+                Priority: AIR: {{ averages[0] }} <span ng-show="typeof averages[0] == 'number'">hours</span>
             </span>
             <div class = "gap">&nbsp</div>
             <span class = "segTitle grey">
-                Priority: STANDARD: {{ averages[1] }} {{ hoursTag2 }}
+                Priority: STANDARD: {{ averages[1] }} <span ng-show="typeof averages[1] == 'number'">hours</span>
             </span>
         </div>
     </div>
