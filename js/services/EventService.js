@@ -11,6 +11,7 @@ function service($http, $state, $rootScope) {
     var nzLocations = ["Auckland", "Wellington", "Hamilton", "Rotorua", "Palmerston North", "Christchurch", "Dunedin"];
 
     var svc = {
+        getEventsBetweenDateRange: getEventsBetweenDateRange,
         addEvent: addEvent,
         getAllEvents: getAllEvents,
         readLogFile: readLogFile,
@@ -24,6 +25,34 @@ function service($http, $state, $rootScope) {
         routeIsInternational: routeIsInternational,
         locationIsInNz: locationIsInNz
     };
+
+    function getEventsBetweenDateRange(to, from){
+        var i, filteredEvents = [], timestamp;
+        for (i = 0; i < eventList.cost.length; i++){
+            timestamp = eventList.cost[i].timestamp;
+            if (timestamp > from && timestamp < to){
+                filteredEvents.push(eventList.cost[i]);
+            }
+        }
+        for (i = 0; i < eventList.price.length; i++){
+            timestamp = eventList.price[i].timestamp;
+            if (timestamp > from && timestamp < to){
+                filteredEvents.push(eventList.price[i]);
+            }
+        }
+        for (i = 0; i < eventList.discontinue.length; i++){
+            timestamp = eventList.discontinue[i].timestamp;
+            if (timestamp > from && timestamp < to){
+                filteredEvents.push(eventList.discontinue[i]);
+            }
+        }
+        for (i = 0; i < eventList.mail.length; i++){
+            timestamp = eventList.mail[i].timestamp;
+            if (timestamp > from && timestamp < to){
+                filteredEvents.push(eventList.mail[i]);
+            }
+        }
+    }
 
     function addEvent(event){
         event.timestamp = new Date();
