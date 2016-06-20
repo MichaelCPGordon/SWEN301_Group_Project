@@ -14,6 +14,7 @@ function service($http, $state, $rootScope) {
         getEventsBetweenDateRange: getEventsBetweenDateRange,
         addEvent: addEvent,
         getAllEvents: getAllEvents,
+        getFilteredEvents: getFilteredEvents,
         readLogFile: readLogFile,
         clerkLogin: clerkLogin,
         managerLogin: managerLogin,
@@ -77,6 +78,35 @@ function service($http, $state, $rootScope) {
         }
         for (i = 0; i < eventList.mail.length; i++){
             allEvents.push(eventList.mail[i]);
+        }
+        return allEvents;
+    }
+
+    function getFilteredEvents(filter){
+        var allEvents = [], i, item;
+        for (i = 0; i < eventList.cost.length; i++){
+            item = eventList.cost[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                allEvents.push(item);
+            }
+        }
+        for (i = 0; i < eventList.price.length; i++){
+            item = eventList.price[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                allEvents.push(item);
+            }
+        }
+        for (i = 0; i < eventList.discontinue.length; i++){
+            item = eventList.discontinue[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                allEvents.push(item);
+            }
+        }
+        for (i = 0; i < eventList.mail.length; i++){
+            item = eventList.mail[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                allEvents.push(item);
+            }
         }
         return allEvents;
     }
