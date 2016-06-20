@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('kps')
-        .directive('figures', ["RouteService", "MailService", "EventService", directive]);
+        .directive('figures', ["EventService", "RouteService", "MailService", directive]);
 
     function directive(EventService, RouteService, MailService){
         return {
@@ -16,8 +16,8 @@
                 // };
 
                 //total amount of events
-                scope.eventListLength = EventService.getAllEvents();
-                console.log(eventListLength);
+                scope.eventListLength = EventService.getAllEvents().length;
+                console.log(scope.eventListLength);
 
 
                 //Amount of mail
