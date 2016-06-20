@@ -55,7 +55,7 @@
                 function getTotalRevenue(){
                     var revenue = 0;
                     var mailList = MailService.getMailList();
-                    console.log(mailList);
+                    //console.log(mailList);
                     for(var i=0; i < mailList.length; i++){
                         var totalWeightCost = 0;
                         var totalVolumeCost = 0;
@@ -116,7 +116,7 @@
                                 }
                                 totalWeightCost += (mailList[i].weight * cheapest.weightCost);
                                 totalVolumeCost += (mailList[i].volume * cheapest.volumeCost);
-                                console.log(totalWeightCost + totalVolumeCost);
+                                // console.log(totalWeightCost + totalVolumeCost);
                             }
                         }
                         expenditure += totalWeightCost + totalVolumeCost;
@@ -125,6 +125,50 @@
                 }
                 scope.totalExpenditure = getTotalExpenditure()/100;
 
+
+                //finding the average Delivery times
+                function averageDeliveryTime( from , to ){
+                    var routeList = RouteService.getRouteList();
+                    var transportList = null;
+                    var airCount = 0;
+                    var standCount = 0;
+                    var aveAir = 0;
+                    var aveStandard = 0;
+                    for(var i = 0; i < routeList.length; i++){
+                        if(routeList[i].to == to && routeList[i].from == from){
+                            transportList = routeList[i].transportList;
+                        }
+                    }
+
+                    for(var j = 0; j < transportList.length; j++){
+                        if(transportList[j].type == "Air"){
+                            aveAir += parseInt(transportList[j].duration);
+                            airCount++;
+                        }
+                        else if(transportList.type == "Land" || transportList.type == "Sea"){
+                            aveStandard += parseInt(transportList[j].duration);
+                            standCount++;
+                        }
+                    }
+                    console.log(aveAir);
+                    aveAir = airCount == 0 ? 0 : aveAir/airCount;
+
+                    console.log(aveAir);
+                    aveStandard = standCount == 0 ? 0 : aveStandard/standCount;
+                    var averageTimes = [];
+                    averageTimes.push(aveAir);
+                    averageTimes.push(aveStandard);
+
+                    if(transportList != null) {
+                        return averageTimes;
+                    }
+                    else{
+                        return "No Such Route";
+                    }
+                    
+                }
+                scope.averages = averageDeliveryTime("Wellington", "Sydney");
+               // console.log(averages);
             }
         }
     }
