@@ -53,7 +53,6 @@
                     for(var i=0; i < scope.mailList.length; i++){
                         totalMailWeight += parseInt(scope.mailList[i].weight);
                     }
-                    console.log(totalMailWeight);
                     return totalMailWeight;
                 }
 
@@ -64,7 +63,6 @@
                     for(var i=0; i < scope.mailList.length; i++){
                         totalMailVolume += parseInt(scope.mailList[i].volume);
                     }
-                    console.log(totalMailVolume);
                     return totalMailVolume;
                 }
 

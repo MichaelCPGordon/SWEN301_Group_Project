@@ -1,25 +1,25 @@
-<div id = "figuresBar">
+<div class="fig-outer">
 
     <style>
-        #figuresBar {
-            -webkit-box-shadow: 0px 5px 10px 10px rgba(0,0,0,0.1);
-            -moz-box-shadow: 0px 5px 10px 10px rgba(0,0,0,0.1);
-            box-shadow: 0px 5px 10px 10px rgba(0,0,0,0.1);
+        .fig-outer {
+            border-radius: 2px;
+            border: 1px solid #DDDDDD;
+            padding: 10px 15px 15px 15px;
+            max-width: 960px;
+            display: block;
+            margin: auto;
+            background-color: #f7f7f7;
         }
 
         .figures-filterBar {
             width: 100%;
             height: 44px;
-            background-color: #E0E0E0;
         }
 
-        .figures-filterBar > button {
+        .figures-filterBar > h4 {
+            line-height: 44px;
             float: left;
-            margin: 5px;
-        }
-
-        .figures-filterBar > button:focus {
-            outline: none !important;
+            margin: 0;
         }
 
         .figures-filterBar > div {
@@ -34,15 +34,60 @@
             display: none;
             -webkit-appearance: none;
         }
+
+        .fig-container {
+            margin-top: 10px;
+            border-radius: 2px;
+            border: 1px solid #DDDDDD;
+            background-color: #ffffff;
+        }
+
+        .fig-rowA {
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid #DDDDDD;
+        }
+
+        .fig-rowA > div {
+            height: 100%;
+            width: calc(100% / 3);
+            float: left;
+            padding: 15px;
+        }
+
+        .fig-rowAFigName, .fig-rowAFigValue {
+            height: 50%;
+            width: 50%;
+            float: left;
+        }
+
+        .fig-rowAFigName > div {
+            margin-top: 13px;
+        }
+
+        .fig-rowAFigValue > h3 {
+            margin: 8px 0 0 0;
+            text-align: right;
+            float: right;
+        }
+
+        .fig-rowB {
+            height: 120px;
+            width: 100%;
+        }
+
+        .fig-rowB > div {
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
     </style>
 
     <div class="figures-filterBar">
-        <button class="btn btn-default glyphicon"
-                ng-click="toggleExtras()"
-                ng-class="figuresExpanded ? 'glyphicon-menu-down' : 'glyphicon-menu-up'">
-        </button>
 
-        <div class="input-group">
+        <h4>Business Figures</h4>
+
+        <div class="input-group" style="padding-right: 0;">
             <span class="input-group-addon">To</span>
             <input type="date" class="form-control"
                    ng-model="timeFilter.to"
@@ -58,78 +103,62 @@
         </div>
     </div>
 
-    <!-- Primary bar -->
-    <div class = "bar">
-        <div class = "first segment">
-            <span class = "label label-info" style = "font-size: 100%;">
-                Total Number of Events: {{ eventListLength }}
-            </span>
-            <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Total Revenue: ${{ totalRevenue }}
-            </span>
-            <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Total Expenditure: ${{ totalExpenditure }}
-            </span>
-        </div>
-        <div class = "second segment">
-            <span class = "label label-success" style = "font-size: 100%;">
-                Total Amount of mail Items: {{ numberMailItems }}
-            </span>
-            <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Total Weight of all Mail Items: {{ totalMailWeight }}g
-            </span>
-            <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Total Volume of all Mail items: {{ totalMailVolume }}cm3
-            </span>
-        </div>
-        <div class = "third segment">
-            <div ng-show="averages == null">No Routes in the time period</div>
-            <div ng-show="averages != null">
-               <span class = "label label-warning" style = "font-size: 100%;">
-                Average Delivery Time: Wellington -> Sydney
-            </span>
-                <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Priority: AIR: {{ averages[0] }}
-            </span>
-                <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Priority: STANDARD: {{ averages[1] }}
-            </span>
+    <div class="fig-container">
+
+        <div class="fig-rowA">
+            <div style="border-right: 1px solid #DDDDDD;">
+                <div class="fig-rowAFigName">
+                    <div>Total Events:</div>
+                </div>
+                <div class="fig-rowAFigValue">
+                    <h3>{{ eventListLength }}</h3>
+                </div>
+                <div class="fig-rowAFigName">
+                    <div>Total Mail:</div>
+                </div>
+                <div class="fig-rowAFigValue">
+                    <h3>{{ numberMailItems }}</h3>
+                </div>
             </div>
-
+            <div style="border-right: 1px solid #DDDDDD;">
+                <div class="fig-rowAFigName">
+                    <div>Total Revenue:</div>
+                </div>
+                <div class="fig-rowAFigValue">
+                    <h3>${{ totalRevenue }}</h3>
+                </div>
+                <div class="fig-rowAFigName">
+                    <div>Total Expenditure:</div>
+                </div>
+                <div class="fig-rowAFigValue">
+                    <h3>${{ totalExpenditure }}</h3>
+                </div>
+            </div>
+            <div>
+                <div class="fig-rowAFigName">
+                    <div>Total Mail Weight:</div>
+                </div>
+                <div class="fig-rowAFigValue">
+                    <h3>{{ totalMailWeight }}g</h3>
+                </div>
+                <div class="fig-rowAFigName">
+                    <div>Total Mail Volume:</div>
+                </div>
+                <div class="fig-rowAFigValue">
+                    <h3>{{ totalMailVolume }}cm3</h3>
+                </div>
+            </div>
         </div>
+
+        <div class="fig-rowB">
+            <div style="border-right: 1px solid #DDDDDD">
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+
+
     </div>
-
-    <!-- Extras bar -->
-    <div class = "bar" id = "extras" style = "display: none">
-        <div class = "first segment">
-            <span class = "segTitle grey">
-                Extra stuff: ??? <!-- Change this value -->
-            </span>
-            <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Extra stuff: ??? <!-- Change this value -->
-            </span>
-        </div>
-        <div class = "second segment">
-            <span class = "segTitle grey">
-                Extra stuff: ??? <!-- Change this value -->
-            </span>
-            <div class = "gap">&nbsp</div>
-            <span class = "segTitle grey">
-                Extra stuff: ??? <!-- Change this value -->
-            </span>
-        </div>
-        <div class = "third segment">
-            <span class = "segTitle grey">
-                Extra stuff: ??? <!-- Change this value -->
-            </span>
-        </div>
-    </div>
-
 </div>

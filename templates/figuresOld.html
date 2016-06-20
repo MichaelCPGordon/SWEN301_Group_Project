@@ -1,0 +1,191 @@
+<div id = "figuresBar">
+
+    <style>
+
+        .dontShowExtras{
+            display: none;
+        }
+        #figuresBar{
+            width: 100%;
+            bottom: 0;
+            position: fixed;
+        }
+        .bar{
+            background-color: #EEEEEE;
+            width: 100%;
+            height: 100px;
+        }
+        .segTitle{
+            display: inline;
+            padding: .2em .6em .3em;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+        }
+        .gap{
+            height: 8px;
+        }
+        .blue{
+            background-color: #5bc0de;
+        }
+        .green{
+            background-color: #5cb85c;
+        }
+        .yellow{
+            background-color: #f0ad4e;
+        }
+        .grey{
+            background-color: #999999;
+        }
+        .segment{
+            width: 33.3%;
+            height: 100%;
+            float: left;
+            padding: 10px;
+        }
+        .first{
+            background-color: #D7D7D7;
+        }
+        .second{
+            background-color: #DDDDDD;
+        }
+        .third{
+            background-color: #D7D7D7;
+        }
+        * {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+
+        .figures-filterBar {
+            width: 100%;
+            height: 44px;
+            background-color: #E0E0E0;
+        }
+
+        .figures-filterBar > button {
+            float: left;
+            margin: 5px;
+        }
+
+        .figures-filterBar > button:focus {
+            outline: none !important;
+        }
+
+        .figures-filterBar > div {
+            float: right;
+            height: 44px;
+            width: 180px;
+            padding: 5px;
+        }
+
+        .form-control::-webkit-inner-spin-button,
+        .form-control::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    </style>
+
+    <div class="figures-filterBar">
+        <button class="btn btn-default glyphicon"
+                ng-click="toggleExtras()"
+                ng-class="figuresExpanded ? 'glyphicon-menu-down' : 'glyphicon-menu-up'">
+        </button>
+
+        <div class="input-group">
+            <span class="input-group-addon">To</span>
+            <input type="date" class="form-control"
+                   ng-model="timeFilter.to"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-change="timeFilterUpdated()">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">From</span>
+            <input type="date" class="form-control"
+                   ng-model="timeFilter.from"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-change="timeFilterUpdated()">
+        </div>
+    </div>
+
+    <!-- Primary bar -->
+    <div class = "bar">
+        <div class = "first segment">
+            <span class = "label label-info" style = "font-size: 100%;">
+                Total Number of Events: {{ eventListLength }}
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Total Revenue: ${{ totalRevenue }}
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Total Expenditure: ${{ totalExpenditure }}
+            </span>
+        </div>
+        <div class = "second segment">
+            <span class = "label label-success" style = "font-size: 100%;">
+                Total Amount of mail Items: {{ numberMailItems }}
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Total Weight of all Mail Items: {{ totalMailWeight }}g
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Total Volume of all Mail items: {{ totalMailVolume }}cm3
+            </span>
+        </div>
+        <div class = "third segment">
+            <div ng-show="averages == null">No Routes in the time period</div>
+            <div ng-show="averages != null">
+               <span class = "label label-warning" style = "font-size: 100%;">
+                Average Delivery Time: Wellington -> Sydney
+            </span>
+                <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Priority: AIR: {{ averages[0] }}
+            </span>
+                <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Priority: STANDARD: {{ averages[1] }}
+            </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Extras bar -->
+    <div class = "bar" id = "extras" style = "display: none">
+        <div class = "first segment">
+            <span class = "segTitle grey">
+                Extra stuff: ??? <!-- Change this value -->
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Extra stuff: ??? <!-- Change this value -->
+            </span>
+        </div>
+        <div class = "second segment">
+            <span class = "segTitle grey">
+                Extra stuff: ??? <!-- Change this value -->
+            </span>
+            <div class = "gap">&nbsp</div>
+            <span class = "segTitle grey">
+                Extra stuff: ??? <!-- Change this value -->
+            </span>
+        </div>
+        <div class = "third segment">
+            <span class = "segTitle grey">
+                Extra stuff: ??? <!-- Change this value -->
+            </span>
+        </div>
+    </div>
+
+</div>
