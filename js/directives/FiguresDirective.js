@@ -15,15 +15,33 @@
                     $("#extras").slideToggle(500);
                 };
 
-                //total amount of events
                 scope.eventListLength = EventService.getAllEvents().length;
-                console.log(scope.eventListLength);
-
-
-                //Amount of mail
-                // - Number of Mail items
                 scope.numberMailItems = MailService.getMailList().length;
 
+                initialiseTimerFilter();
+
+                scope.mailList = MailService.getFilteredMailList(scope.timeFilter);
+                scope.RouteList = RouteService.getFilteredRouteList(scope.timeFilter);
+
+
+
+
+                function initialiseTimerFilter(){
+                    var from = new Date(1980, 0, 1, 0, 0);
+                    var to = new Date();
+                    to.setSeconds(0, 0);
+
+                    scope.timeFilter = {
+                        from: from,
+                        to: to
+                    };
+                }
+
+                scope.timeFilterUpdated = function(){
+                    scope.mailList = MailService.getFilteredMailList(scope.timeFilter);
+                    scope.RouteList = RouteService.getFilteredRouteList(scope.timeFilter);
+                    //TODO Update figures here
+                };
 
                 //Total weight value of all mail
                 function getTotalMailWeight() {
