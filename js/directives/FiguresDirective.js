@@ -17,11 +17,15 @@
                 };
                 scope.figuresExpanded = false;
 
+                scope.averageTimeCalculationTo = "Sydney";
+                scope.averageTimeCalculationFrom = "Wellington";
+                scope.hoursTag1 = "Hours";
+                scope.hoursTag2 = "Hours";
+
                 scope.timeFilterUpdated = timeFilterUpdated;
 
                 initialiseTimerFilter();
                 timeFilterUpdated();
-
 
                 function initialiseTimerFilter(){
                     var from = new Date(1980, 0, 1, 0, 0);
@@ -174,6 +178,14 @@
                     console.log(aveAir);
                     aveStandard = standCount == 0 ? 0 : aveStandard/standCount;
                     var averageTimes = [];
+                    if(aveAir == 0){
+                        aveAir = "No mail on this Route";
+                        scope.hoursTag1 = "";
+                    }
+                    if(aveStandard == 0){
+                        aveStandard = "No mail on this Route";
+                        scope.hoursTag2 = "";
+                    }
                     averageTimes.push(aveAir);
                     averageTimes.push(aveStandard);
 
@@ -186,7 +198,16 @@
                     
                 }
                 scope.averages = averageDeliveryTime("Wellington", "Sydney");
-               // console.log(averages);
+
+
+                //finds the critical routes
+                function criticalRoutes(){
+                    var criticalRoutes = [];
+
+
+
+                    return criticalRoutes;
+                }
             }
         }
     }
