@@ -12,10 +12,10 @@
             templateUrl: "templates/figures.html",
             link: function (scope) {
                 scope.toggleExtras = function () {
-                    scope.figuresExpanded = !scope.figuresExpanded;
+                    //scope.figuresExpanded = !scope.figuresExpanded;
                     $("#extras").slideToggle(500);
                 };
-                scope.figuresExpanded = false;
+                //scope.figuresExpanded = false;
 
                 scope.timeFilterUpdated = timeFilterUpdated;
 

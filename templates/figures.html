@@ -5,10 +5,13 @@
             border-radius: 2px;
             border: 1px solid #DDDDDD;
             padding: 10px 15px 15px 15px;
-            max-width: 960px;
+            /*max-width: 960px;*/
+            width: 100%;
             display: block;
             margin: auto;
             background-color: #f7f7f7;
+            bottom: 0;
+            position: fixed;
         }
 
         .figures-filterBar {
@@ -74,6 +77,7 @@
         .fig-rowB {
             height: 120px;
             width: 100%;
+            display: none;
         }
 
         .fig-rowB > div {
@@ -87,6 +91,11 @@
 
         <h4>Business Figures</h4>
 
+        <div class="input-group" style="padding-right: 0; width: 50px;">
+            <button ng-click = "toggleExtras()" class = "btn btn-default">
+                <span class = "glyphicon glyphicon-option-horizontal"></span>
+            </button>
+        </div>
         <div class="input-group" style="padding-right: 0;">
             <span class="input-group-addon">To</span>
             <input type="date" class="form-control"
@@ -145,12 +154,12 @@
                     <div>Total Mail Volume:</div>
                 </div>
                 <div class="fig-rowAFigValue">
-                    <h3>{{ totalMailVolume }}cm3</h3>
+                    <h3>{{ totalMailVolume }}cm&sup3</h3>
                 </div>
             </div>
         </div>
 
-        <div class="fig-rowB">
+        <div id = "extras" class="fig-rowB">
             <div style="border-right: 1px solid #DDDDDD">
 
             </div>
