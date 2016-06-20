@@ -63,6 +63,7 @@ function service(EventService, $rootScope) {
 
     function getFilteredRouteList(filter){
         buildRouteListFromEvents(EventService.getFilteredRouteEvents(filter), true);
+        return filteredRouteList;
     }
 
     function discontinueTransport(ev){

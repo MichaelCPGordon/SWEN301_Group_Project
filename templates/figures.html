@@ -87,17 +87,21 @@
             </span>
         </div>
         <div class = "third segment">
-            <span class = "label label-warning" style = "font-size: 100%;">
+            <div ng-show="averages == null">No Routes in the time period</div>
+            <div ng-show="averages != null">
+               <span class = "label label-warning" style = "font-size: 100%;">
                 Average Delivery Time: Wellington -> Sydney
             </span>
-            <div class = "gap">&nbsp</div>
+                <div class = "gap">&nbsp</div>
             <span class = "segTitle grey">
-                Priority: AIR: {{ averages[0] }} <span ng-show="typeof averages[0] == 'number'">hours</span>
+                Priority: AIR: {{ averages[0] }}
             </span>
-            <div class = "gap">&nbsp</div>
+                <div class = "gap">&nbsp</div>
             <span class = "segTitle grey">
-                Priority: STANDARD: {{ averages[1] }} <span ng-show="typeof averages[1] == 'number'">hours</span>
+                Priority: STANDARD: {{ averages[1] }}
             </span>
+            </div>
+
         </div>
     </div>
 

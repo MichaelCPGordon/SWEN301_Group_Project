@@ -35,57 +35,56 @@
 
                 function timeFilterUpdated(){
                     scope.mailList = MailService.getFilteredMailList(scope.timeFilter);
-                    scope.RouteList = RouteService.getFilteredRouteList(scope.timeFilter);
+                    scope.routeList = RouteService.getFilteredRouteList(scope.timeFilter);
 
                     scope.eventListLength = EventService.getFilteredEvents(scope.timeFilter).length;
                     scope.numberMailItems = scope.mailList.length;
-                    //TODO Update figures here
+                    scope.totalMailWeight = getTotalMailWeight();
+                    scope.totalMailVolume = getTotalMailVolume();
+                    scope.totalRevenue = getTotalRevenue()/100;
+                    scope.totalExpenditure = getTotalExpenditure()/100;
+                    //TODO change static routelist
+                    scope.averages = averageDeliveryTime(scope.routeList[0]);
                 }
 
                 //Total weight value of all mail
                 function getTotalMailWeight() {
                     var totalMailWeight = 0;
-                    var mailList = MailService.getMailList();
-                    for(var i=0; i < mailList.length; i++){
-                        totalMailWeight += parseInt(mailList[i].weight);
+                    for(var i=0; i < scope.mailList.length; i++){
+                        totalMailWeight += parseInt(scope.mailList[i].weight);
                     }
                     console.log(totalMailWeight);
                     return totalMailWeight;
                 }
-                scope.totalMailWeight = getTotalMailWeight();
 
 
                 //total volume value of all mail
                 function getTotalMailVolume() {
                     var totalMailVolume = 0;
-                    var mailList = MailService.getMailList();
-                    for(var i=0; i < mailList.length; i++){
-                        totalMailVolume += parseInt(mailList[i].volume);
+                    for(var i=0; i < scope.mailList.length; i++){
+                        totalMailVolume += parseInt(scope.mailList[i].volume);
                     }
                     console.log(totalMailVolume);
                     return totalMailVolume;
                 }
-                scope.totalMailVolume = getTotalMailVolume();
 
 
                 //function for finding total revenue
                 function getTotalRevenue(){
                     var revenue = 0;
-                    var mailList = MailService.getMailList();
-                    //console.log(mailList);
-                    for(var i=0; i < mailList.length; i++){
+                    for(var i=0; i < scope.mailList.length; i++){
                         var totalWeightCost = 0;
                         var totalVolumeCost = 0;
                         var routeList = RouteService.getRouteList()
                         for(var j = 0; j < routeList.length; j++){
-                            if(mailList[i].from == routeList[j].from && mailList[i].to == routeList[j].to){
-                                if(mailList[i].priority == "International Air" || mailList[i].priority == "Domestic Air"){
-                                    totalWeightCost += (mailList[i].weight*routeList[j].airPriceInfo.weightCost);
-                                    totalVolumeCost += (mailList[i].volume*routeList[j].airPriceInfo.volumeCost);
+                            if(scope.mailList[i].from == routeList[j].from && scope.mailList[i].to == routeList[j].to){
+                                if(scope.mailList[i].priority == "International Air" || scope.mailList[i].priority == "Domestic Air"){
+                                    totalWeightCost += (scope.mailList[i].weight*routeList[j].airPriceInfo.weightCost);
+                                    totalVolumeCost += (scope.mailList[i].volume*routeList[j].airPriceInfo.volumeCost);
                                 }
-                                else if(mailList[i].priority == "International Standard" || mailList[i].priority == "Domestic Standard"){
-                                    totalWeightCost += (mailList[i].weight*routeList[j].standardPriceInfo.weightCost);
-                                    totalVolumeCost += (mailList[i].volume*routeList[j].standardPriceInfo.volumeCost);
+                                else if(scope.mailList[i].priority == "International Standard" || scope.mailList[i].priority == "Domestic Standard"){
+                                    totalWeightCost += (scope.mailList[i].weight*routeList[j].standardPriceInfo.weightCost);
+                                    totalVolumeCost += (scope.mailList[i].volume*routeList[j].standardPriceInfo.volumeCost);
                                 }
                             }
                         }
@@ -93,35 +92,31 @@
                     }
                     return revenue;
                 }
-                scope.totalRevenue = getTotalRevenue()/100;
 
 
                 //calculates the total expenditure
                 function getTotalExpenditure(){
                     var expenditure = 0;
-                    var mailList = MailService.getMailList();
-                    var routeList = RouteService.getRouteList();
-                    for(var i=0; i < mailList.length; i++){
+                    for(var i=0; i < scope.mailList.length; i++){
                         var totalWeightCost = 0;
                         var totalVolumeCost = 0;
-                        for(var j = 0; j < routeList.length; j++){
-                            if(mailList[i].from == routeList[j].from && mailList[i].to == routeList[j].to ) {
+                        for(var j = 0; j < scope.routeList.length; j++){
+                            if(scope.mailList[i].from == scope.routeList[j].from && scope.mailList[i].to == scope.routeList[j].to ) {
                                 var sameType = [];
-                                for(var k = 0; k < routeList[j].transportList.length; k++){
-                                    // console.log(routeList[j].transportList[l]);
-                                    if(mailList[i].priority == "International Air" || mailList[i].priority == "Domestic Air"){
-                                        if(routeList[j].transportList[k].type == "Air"){
-                                            sameType.push(routeList[j].transportList[k]);
+                                for(var k = 0; k < scope.routeList[j].transportList.length; k++){
+                                    if(scope.mailList[i].priority == "International Air" || scope.mailList[i].priority == "Domestic Air"){
+                                        if(scope.routeList[j].transportList[k].type == "Air"){
+                                            sameType.push(scope.routeList[j].transportList[k]);
                                         }
                                     }
-                                    else if(mailList[i].priority == "International Standard"){
-                                        if(routeList[j].transportList[k].type == "Sea"){
-                                            sameType.push(routeList[j].transportList[k]);
+                                    else if(scope.mailList[i].priority == "International Standard"){
+                                        if(scope.routeList[j].transportList[k].type == "Sea"){
+                                            sameType.push(scope.routeList[j].transportList[k]);
                                         }
                                     }
-                                    else if(mailList[i].priority == "Domestic Standard"){
-                                        if(routeList[j].transportList[k].type == "Land"){
-                                            sameType.push(routeList[j].transportList[k]);
+                                    else if(scope.mailList[i].priority == "Domestic Standard"){
+                                        if(scope.routeList[j].transportList[k].type == "Land"){
+                                            sameType.push(scope.routeList[j].transportList[k]);
                                         }
                                     }
                                 }
@@ -131,29 +126,28 @@
                                         cheapest = sameType[l];
                                     }
                                 }
-                                totalWeightCost += (mailList[i].weight * cheapest.weightCost);
-                                totalVolumeCost += (mailList[i].volume * cheapest.volumeCost);
-                                // console.log(totalWeightCost + totalVolumeCost);
+                                totalWeightCost += (scope.mailList[i].weight * cheapest.weightCost);
+                                totalVolumeCost += (scope.mailList[i].volume * cheapest.volumeCost);
                             }
                         }
                         expenditure += totalWeightCost + totalVolumeCost;
                     }
                     return expenditure;
                 }
-                scope.totalExpenditure = getTotalExpenditure()/100;
 
 
                 //finding the average Delivery times
                 function averageDeliveryTime( route ){
-                    var routeList = RouteService.getRouteList();
+                    if (!route){ return null; }
+
                     var transportList = null;
                     var airCount = 0;
                     var standCount = 0;
                     var aveAir = 0;
                     var aveStandard = 0;
-                    for(var i = 0; i < routeList.length; i++){
-                        if(routeList[i].to == route.to && routeList[i].from == route.from){
-                            transportList = routeList[i].transportList;
+                    for(var i = 0; i < scope.routeList.length; i++){
+                        if(scope.routeList[i].to == route.to && scope.routeList[i].from == route.from){
+                            transportList = scope.routeList[i].transportList;
                         }
                     }
 
@@ -167,19 +161,15 @@
                             standCount++;
                         }
                     }
-                    console.log(aveAir);
                     aveAir = airCount == 0 ? 0 : aveAir/airCount;
 
-                    console.log(aveAir);
                     aveStandard = standCount == 0 ? 0 : aveStandard/standCount;
                     var averageTimes = [];
                     if(aveAir == 0){
                         aveAir = "No mail on this Route";
-                        scope.hoursTag1 = "";
                     }
                     if(aveStandard == 0){
                         aveStandard = "No mail on this Route";
-                        scope.hoursTag2 = "";
                     }
                     averageTimes.push(aveAir);
                     averageTimes.push(aveStandard);
@@ -192,8 +182,6 @@
                     }
                     
                 }
-                scope.placeHolder = RouteService.getRouteList();
-                scope.averages = averageDeliveryTime(scope.placeHolder[0]);
 
 
                 //finds the critical routes
