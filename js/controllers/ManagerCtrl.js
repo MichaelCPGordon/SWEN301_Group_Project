@@ -8,6 +8,7 @@ function controller($scope, EventService) {
     vm.pageToShow = "newEvent";
 
     vm.eventList = EventService.getAllEvents();
+    console.log(vm.eventList);
     vm.username = EventService.getUsername();
 
 
