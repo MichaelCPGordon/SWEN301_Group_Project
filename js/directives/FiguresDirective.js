@@ -15,6 +15,11 @@
                     $("#extras").slideToggle(500);
                 };
 
+                scope.averageTimeCalculationTo = "Sydney";
+                scope.averageTimeCalculationFrom = "Wellington";
+                scope.hoursTag1 = "Hours";
+                scope.hoursTag2 = "Hours";
+                
                 //total amount of events
                 scope.eventListLength = EventService.getAllEvents().length;
                 console.log(scope.eventListLength);
@@ -156,6 +161,14 @@
                     console.log(aveAir);
                     aveStandard = standCount == 0 ? 0 : aveStandard/standCount;
                     var averageTimes = [];
+                    if(aveAir == 0){
+                        aveAir = "No mail on this Route";
+                        scope.hoursTag1 = "";
+                    }
+                    if(aveStandard == 0){
+                        aveStandard = "No mail on this Route";
+                        scope.hoursTag2 = "";
+                    }
                     averageTimes.push(aveAir);
                     averageTimes.push(aveStandard);
 
@@ -168,7 +181,16 @@
                     
                 }
                 scope.averages = averageDeliveryTime("Wellington", "Sydney");
-               // console.log(averages);
+
+
+                //finds the critical routes
+                function criticalRoutes(){
+                    var criticalRoutes = [];
+
+
+
+                    return criticalRoutes;
+                }
             }
         }
     }
