@@ -20,7 +20,9 @@ function service($http, $state, $rootScope) {
         logout: logout,
         isLoggedIn: isLoggedIn,
         getUsername: getUsername,
+        getFilteredMailEvents: getFilteredMailEvents,
         getMailEvents: getMailEvents,
+        getFilteredRouteEvents: getFilteredRouteEvents,
         getRouteEvents: getRouteEvents,
         routeIsInternational: routeIsInternational,
         locationIsInNz: locationIsInNz
@@ -52,11 +54,12 @@ function service($http, $state, $rootScope) {
                 filteredEvents.push(eventList.mail[i]);
             }
         }
+        return filteredEvents;
     }
 
     function addEvent(event){
         event.timestamp = new Date();
-        event.timestamp.setMilliseconds(0);
+        event.timestamp.setSeconds(0, 0);
 
         eventList[event.eventType].push(event);
     }
@@ -185,8 +188,42 @@ function service($http, $state, $rootScope) {
         return !locationIsInNz(to) || !locationIsInNz(from);
     }
 
+    function getFilteredMailEvents(filter){
+        var mail = [];
+        for (var i = 0; i < eventList.mail.length; i++){
+            var item = eventList.mail[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                mail.push(item);
+            }
+        }
+        return mail;
+    }
+
     function getMailEvents(){
         return eventList.mail;
+    }
+
+    function getFilteredRouteEvents(filter){
+        var i, item, prices = [], costs = [], discontinues = [];
+        for (i = 0; i < eventList.price.length; i++){
+            item = eventList.price[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                prices.push(item);
+            }
+        }
+        for (i = 0; i < eventList.cost.length; i++){
+            item = eventList.cost[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                costs.push(item);
+            }
+        }
+        for (i = 0; i < eventList.discontinue.length; i++){
+            item = eventList.discontinue[i];
+            if (item.timestamp > filter.from && item.timestamp < filter.to){
+                discontinues.push(item);
+            }
+        }
+        return [prices, costs, discontinues];
     }
 
     function getRouteEvents(){

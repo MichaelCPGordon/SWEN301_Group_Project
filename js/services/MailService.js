@@ -8,6 +8,7 @@ function service(EventService, $rootScope) {
 
     var svc = {
         createMailEvent: createMailEvent,
+        getFilteredMailList: getFilteredMailList,
         getMailList: getMailList
     };
 
@@ -38,6 +39,10 @@ function service(EventService, $rootScope) {
             return EventService.routeIsInternational(ev.route.to, ev.route.from) ?
                 "International Standard" : "Domestic Standard";
         }
+    }
+
+    function getFilteredMailList(filter){
+        return EventService.getFilteredMailEvents(filter);
     }
     
     function getMailList(){

@@ -5,10 +5,12 @@ angular.module('kps')
 function service(EventService, $rootScope) {
 
     var routeList = [];
+    var filteredRouteList = [];
     
 
     var svc = {
         getRouteList: getRouteList,
+        getFilteredRouteList: getFilteredRouteList,
         createDiscontinueEvent: createDiscontinueEvent
     };
 
@@ -59,6 +61,10 @@ function service(EventService, $rootScope) {
         return routeList;
     }
 
+    function getFilteredRouteList(filter){
+        buildRouteListFromEvents(EventService.getFilteredRouteEvents(filter), true);
+    }
+
     function discontinueTransport(ev){
         for (var i = 0; i < routeList.length; i++){
             var route = routeList[i];
@@ -73,14 +79,24 @@ function service(EventService, $rootScope) {
         }
     }
 
-    function buildRouteListFromEvents(events){
+    function buildRouteListFromEvents(events, filterEvents){
         var priceList = events[0], costList = events[1], discontinueList = events[2];
         var price, cost, discontinue, route, routes;
         var transportIndex, i, j;
+        var currentList;
+
+        if (filterEvents){
+            filteredRouteList = [];
+            currentList = filteredRouteList;
+        }
+        else {
+            routeList = [];
+            currentList = routeList;
+        }
 
         for (i = 0; i < costList.length; i++){
             cost = costList[i];
-            route = getRouteForEvent(cost);
+            route = getRouteForEvent(cost, currentList);
             if (route){
                 transportIndex = findTransportIndexInList(cost.company, cost.type, route.transportList);
                 if (transportIndex != null){
@@ -91,13 +107,13 @@ function service(EventService, $rootScope) {
                 }
             }
             else {
-                createNewRoute(cost);
+                createNewRoute(cost, currentList);
             }
         }
 
         for (i = 0; i < priceList.length; i++){
             price = priceList[i];
-            routes = getRoutesForPriceEvent(price.to, price.from);
+            routes = getRoutesForPriceEvent(price.to, price.from, currentList);
             if (routes.length > 0){
 
                     if (price.priority == "International Air" || price.priority == "Domestic Air"){
@@ -120,14 +136,14 @@ function service(EventService, $rootScope) {
             }
             else {
                 //TODO Do this properly
-                console.log("--- No route available for given price event ---");
-                console.log(price);
+                // console.log("--- No route available for given price event ---");
+                // console.log(price);
             }
         }
 
         for (i = 0; i < discontinueList.length; i++){
             discontinue = discontinueList[i];
-            route = getRouteForEvent(discontinue, "aa");
+            route = getRouteForEvent(discontinue, currentList);
             if (route){
                 transportIndex = findTransportIndexInList(discontinue.company, discontinue.type, route.transportList);
                 if (transportIndex != null){
@@ -145,7 +161,7 @@ function service(EventService, $rootScope) {
         }
     }
 
-    function createNewRoute(costData){
+    function createNewRoute(costData, routeList){
         routeList.push({
             to: costData.to,
             from: costData.from,
@@ -206,7 +222,7 @@ function service(EventService, $rootScope) {
         return null;
     }
 
-    function getRoutesForPriceEvent(to, from){
+    function getRoutesForPriceEvent(to, from, routeList){
         var i, route, routes = [];
         if (to == "New Zealand" && from == "New Zealand"){
             for (i = 0; i < routeList.length; i++){
@@ -235,7 +251,7 @@ function service(EventService, $rootScope) {
         return routes;
     }
 
-    function getRouteForEvent(event, test){
+    function getRouteForEvent(event, routeList){
         for (var i = 0; i < routeList.length; i++){
             var route = routeList[i];
             if (event.to == route.to && event.from == route.from){
