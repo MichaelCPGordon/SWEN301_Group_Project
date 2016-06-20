@@ -11,9 +11,9 @@
             scope: {},
             templateUrl: "templates/figures.html",
             link: function (scope) {
-                // scope.toggleExtras = function () {
-                //     $("#extras").slideToggle(500);
-                // };
+                scope.toggleExtras = function () {
+                    $("#extras").slideToggle(500);
+                };
 
                 //total amount of events
                 scope.eventListLength = EventService.getAllEvents().length;
@@ -76,7 +76,7 @@
                     }
                     return revenue;
                 }
-                scope.totalRevenue = getTotalRevenue();
+                scope.totalRevenue = getTotalRevenue()/100;
 
 
                 //calculates the total expenditure
@@ -123,7 +123,7 @@
                     }
                     return expenditure;
                 }
-                scope.totalExpenditure = getTotalExpenditure();
+                scope.totalExpenditure = getTotalExpenditure()/100;
 
             }
         }
