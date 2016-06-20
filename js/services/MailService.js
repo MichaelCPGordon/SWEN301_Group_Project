@@ -7,7 +7,8 @@ function service(EventService, $rootScope) {
     var mailList;
 
     var svc = {
-        createMailEvent: createMailEvent
+        createMailEvent: createMailEvent,
+        getMailList: getMailList
     };
 
     $rootScope.$on('logFileLoaded', function(){
@@ -37,6 +38,10 @@ function service(EventService, $rootScope) {
             return EventService.routeIsInternational(ev.route.to, ev.route.from) ?
                 "International Standard" : "Domestic Standard";
         }
+    }
+    
+    function getMailList(){
+        return mailList;
     }
 
     return svc;
