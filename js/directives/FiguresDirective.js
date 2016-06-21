@@ -17,6 +17,7 @@
                 };
 
 
+
                 scope.$on('eventCreated', function(){
                     timeFilterUpdated();
                 });
@@ -38,6 +39,11 @@
                     };
                 }
 
+                scope.selectRoute = function(route){
+                    scope.selectedRoute = route;
+                    scope.deliveryAverage = averageDeliveryTime(scope.selectedRoute);
+                }
+
                 function timeFilterUpdated(){
                     scope.mailList = MailService.getFilteredMailList(scope.timeFilter);
                     scope.routeList = RouteService.getFilteredRouteList(scope.timeFilter);
@@ -50,6 +56,12 @@
                     scope.totalExpenditure = getTotalExpenditure()/100;
                     //TODO change static routelist
                     scope.averages = averageDeliveryTime(scope.routeList[0]);
+
+                    scope.selectedRoute = scope.routeList[0];
+
+                    scope.deliveryAverage = averageDeliveryTime(scope.selectedRoute);
+
+                    scope.criticalRoutes = criticalRoutes();
                 }
 
                 //Total weight value of all mail
@@ -172,10 +184,12 @@
                     aveStandard = standCount == 0 ? 0 : aveStandard/standCount;
                     var averageTimes = [];
                     if(aveAir == 0){
-                        aveAir = "No mail on this Route";
+                        //aveAir = "No air mail on this Route";
+                        aveAir = "N/A";
                     }
                     if(aveStandard == 0){
-                        aveStandard = "No mail on this Route";
+                        //aveStandard = "No standard mail on this Route";
+                        aveStandard = "N/A";
                     }
                     averageTimes.push(aveAir);
                     averageTimes.push(aveStandard);

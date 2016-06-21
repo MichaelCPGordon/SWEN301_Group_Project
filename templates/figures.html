@@ -1,20 +1,6 @@
 <div id = "figuresPanel" class="fig-outer">
 
     <style>
-        /*
-        .fig-outer {
-            border-radius: 2px;
-            border: 1px solid #DDDDDD;
-            padding: 10px 15px 15px 15px;
-            width: 100%;
-            display: block;
-            margin: auto;
-            background-color: #f7f7f7;
-            bottom: 0;
-            position: fixed;
-        }
-        */
-
         .fig-outer {
             border-radius: 2px;
             border: 1px solid #DDDDDD;
@@ -24,6 +10,7 @@
             background-color: #f7f7f7;
             float: left;
             display: none;
+            overflow-y: scroll;
         }
 
         .figures-filterBar {
@@ -106,8 +93,8 @@
         }
 
         .fig-rowFigName, .fig-rowFigValue {
-            height: 50%;
             width: 50%;
+            height: 35px;
             float: left;
         }
 
@@ -119,6 +106,24 @@
             float: right;
             text-align: right;
             margin-top: 13px;
+        }
+
+        .btn-group > button {
+            width: 100%;
+            margin: 8px 0 8px 0;
+            text-align: left;
+        }
+
+        .btn-group > ul > li {
+            height: 25px;
+            cursor: pointer;
+            line-height: 25px;
+            padding-left: 10px;
+        }
+
+        .btn-group > ul > li:hover {
+            background-color: #2b669a;
+            color: #fafafa;
         }
 
     </style>
@@ -192,63 +197,38 @@
                 <h3>{{ totalMailVolume }}cm&sup3</h3>
             </div>
         </div>
-        <div class = "fig-row">
+        <div class = "fig-row" style = "height:170px;">
+            <div class="btn-group" style = "width: 100%" uib-dropdown>
+                <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                    <b>{{selectedRoute.from}}</b> to <b>{{selectedRoute.to}}</b>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+                    <li role="menuitem"
+                        ng-repeat="route in routeList"
+                        ng-click="selectRoute(route)"><b>{{route.from}}</b> to <b>{{route.to}}</b></li>
+                </ul>
+            </div>
 
-        </div>
-        <!--
-        <div class="fig-rowA">
-            <div style="border-right: 1px solid #DDDDDD;">
-                <div class="fig-rowAFigName">
-                    <div>Total Events:</div>
-                </div>
-                <div class="fig-rowAFigValue">
-                    <h3>{{ eventListLength }}</h3>
-                </div>
-                <div class="fig-rowAFigName">
-                    <div>Total Mail:</div>
-                </div>
-                <div class="fig-rowAFigValue">
-                    <h3>{{ numberMailItems }}</h3>
-                </div>
+            <div class="fig-rowFigName">
+                <div>Average Air Time:</div>
             </div>
-            <div style="border-right: 1px solid #DDDDDD;">
-                <div class="fig-rowAFigName">
-                    <div>Total Revenue:</div>
-                </div>
-                <div class="fig-rowAFigValue">
-                    <h3>${{ totalRevenue }}</h3>
-                </div>
-                <div class="fig-rowAFigName">
-                    <div>Total Expenditure:</div>
-                </div>
-                <div class="fig-rowAFigValue">
-                    <h3>${{ totalExpenditure }}</h3>
-                </div>
+            <div class="fig-rowFigValue">
+                <h3>{{ deliveryAverage[0] }}</h3>
             </div>
-            <div>
-                <div class="fig-rowAFigName">
-                    <div>Total Mail Weight:</div>
-                </div>
-                <div class="fig-rowAFigValue">
-                    <h3>{{ totalMailWeight }}g</h3>
-                </div>
-                <div class="fig-rowAFigName">
-                    <div>Total Mail Volume:</div>
-                </div>
-                <div class="fig-rowAFigValue">
-                    <h3>{{ totalMailVolume }}cm&sup3</h3>
-                </div>
+            <div class="fig-rowFigName">
+                <div>Average Std Time:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>{{ deliveryAverage[1] }}</h3>
             </div>
         </div>
-
-        <div id = "extras" class="fig-rowB">
-            <div style="border-right: 1px solid #DDDDDD">
-
-            </div>
-            <div>
-
-            </div>
+        <div class = "fig-row" style = "height:170px;">
+            Critical Routes:
+            <ul>
+                <li ng-repeat = "route in criticalRoutes">
+                    <b>{{route.from}}</b> to <b>{{route.to}}</b>
+                </li>
+            </ul>
         </div>
-        -->
     </div>
 </div>
