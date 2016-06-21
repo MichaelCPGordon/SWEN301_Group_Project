@@ -23,7 +23,7 @@
                 timeFilterUpdated();
 
                 function initialiseTimerFilter(){
-                    var from = new Date(1980, 0, 1, 0, 0);
+                    var from = new Date(2016, 0, 1, 0, 0);
                     var to = new Date();
                     to.setSeconds(0, 0);
 
