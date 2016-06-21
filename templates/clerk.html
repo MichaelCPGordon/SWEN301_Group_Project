@@ -44,6 +44,14 @@
         height: 100vh;
     }
 
+    #figureButton {
+        border: none;
+    }
+
+    .btn:focus, .btn:active {
+        outline: hidden;
+    }
+
 
 </style>
 
@@ -55,7 +63,7 @@
 
         <div class="clerk-header">
             <div class = "clerk-headerToggleButton">
-                <button class = "btn btn-primary" ng-click = "toggleFigures()">
+                <button id="figureButton" class = "btn btn-default" ng-click = "toggleFigures()">
                     <span class = "glyphicon glyphicon-menu-hamburger"></span>
                 </button>
             </div>
