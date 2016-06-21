@@ -124,14 +124,16 @@
                                         }
                                     }
                                 }
-                                var cheapest = sameType[0];
-                                for(var l = 1; l < sameType.length; l++){
-                                    if(sameType[l].weightCost + sameType[l].volumeCost < cheapest){
-                                        cheapest = sameType[l];
+                                if(!sameType.$isEmpty()) {
+                                    var cheapest = sameType[0];
+                                    for (var l = 1; l < sameType.length; l++) {
+                                        if (sameType[l].weightCost + sameType[l].volumeCost < cheapest) {
+                                            cheapest = sameType[l];
+                                        }
                                     }
+                                    totalWeightCost += (scope.mailList[i].weight * cheapest.weightCost);
+                                    totalVolumeCost += (scope.mailList[i].volume * cheapest.volumeCost);
                                 }
-                                totalWeightCost += (scope.mailList[i].weight * cheapest.weightCost);
-                                totalVolumeCost += (scope.mailList[i].volume * cheapest.volumeCost);
                             }
                         }
                         expenditure += totalWeightCost + totalVolumeCost;
