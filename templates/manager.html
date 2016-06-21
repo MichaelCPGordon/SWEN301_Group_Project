@@ -9,8 +9,10 @@
     .clerk-headerToggleButton {
         float: left;
         color: #fafafa;
-        margin: 0 0 0 20px;
+        /*margin: 0 0 0 20px;*/
+        padding-left: 15px;
         height: 60px;
+        width: 5%;
         line-height: 55px;
     }
 
@@ -201,58 +203,58 @@
                             <!--</div>-->
                         </div>
                         <div class="row manager-figureRow">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">From</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.from}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">To</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.to}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.priority">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Priority</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.priority}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.duration">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Duration</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.duration}} hrs</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.maxVolume">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Max Volume</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.maxVolume}} cm&sup3</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.maxWeight">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Max Weight</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.maxWeight}}g</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.frequency">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Frequency</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.frequency}}</p>
                             </div>
                         </div>
@@ -267,58 +269,58 @@
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.company">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Company</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.company}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.type">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Type</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.type}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.day">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Day</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.day}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.volumeCost">
-                            <div class="col-xs-4 manager-titleCol">
-                                <p class="manager-title">Vol. Cost</p>
+                            <div class="col-xs-5 manager-titleCol">
+                                <p class="manager-title">Volume Cost</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">${{event.volumeCost}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.weightCost">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Weight Cost</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">${{event.weightCost}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.volume">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Volume</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.volume}} cm&sup3</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.weight">
-                            <div class="col-xs-4 manager-titleCol">
+                            <div class="col-xs-5 manager-titleCol">
                                 <p class="manager-title">Weight</p>
                             </div>
-                            <div class="col-xs-8 manager-figureCol">
+                            <div class="col-xs-7 manager-figureCol">
                                 <p class="manager-figure">{{event.weight}}g</p>
                             </div>
                         </div>
