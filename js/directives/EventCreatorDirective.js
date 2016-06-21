@@ -180,6 +180,7 @@
                 }
 
                 function getInitialisedEventDefaults(){
+                    console.log(scope.activeRoutes[0]);
                     return {
                         mail: {
                             eventType: "mail",
@@ -193,14 +194,15 @@
                             eventType: "price",
                             route: scope.activeRoutes[0],
                             highPriority: false,
-                            weightCost: 0,
-                            volumeCost: 0
+                            weightCost: scope.activeRoutes[0].standardPriceInfo.weightCost,
+                            volumeCost: scope.activeRoutes[0].standardPriceInfo.volumeCost
                         },
                         cost: {
                             eventType: "cost",
                             route: scope.activeRoutes[0],
                             company: scope.activeRoutes[0].transportList[0],
                             day: scope.dayOptions[0],
+                            transport: scope.activeRoutes[0].transportList[0],
                             highPriority: false,
                             weightCost: 0,
                             volumeCost: 0,
