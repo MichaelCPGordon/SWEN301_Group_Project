@@ -99,6 +99,7 @@
 
                 //calculates the total expenditure
                 function getTotalExpenditure(){
+
                     var expenditure = 0;
                     for(var i=0; i < scope.mailList.length; i++){
                         var totalWeightCost = 0;

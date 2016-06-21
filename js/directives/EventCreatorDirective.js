@@ -214,7 +214,6 @@
                             company: "",
                             to: "",
                             from: "",
-                            type: "",
                             day: scope.dayOptions[0],
                             highPriority: false,
                             weightCost: 0,

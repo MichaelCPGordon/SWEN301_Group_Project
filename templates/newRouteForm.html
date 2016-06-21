@@ -4,10 +4,20 @@
            ng-model="selectedEvent.company">
 </div>
 
-<div class="evCr-eventAttr" >
-    <div><h4>Type <label style="font-size: 10px;"></label></h4></div>
-    <input type="string" class="form-control" style="font-weight: bold"
-           ng-model="selectedEvent.type">
+<div class="evCr-eventAttr">
+    <div><h4>Type</h4></div>
+    <div class="btn-group" uib-dropdown>
+        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+            <b ng-show="selectedEvent.highPriority == true">High</b>
+            <b ng-show="selectedEvent.highPriority == false">Standard</b>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
+            <li role="menuitem"
+                ng-click="selectedEvent.highPriority = true"><b>High</b></li>
+            <li role="menuitem"
+                ng-click="selectedEvent.highPriority = false"><b>Standard</b></li>
+        </ul>
+    </div>
 </div>
 
 <div class="evCr-eventAttr" >

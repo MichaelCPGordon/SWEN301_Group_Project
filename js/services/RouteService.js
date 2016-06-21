@@ -115,13 +115,19 @@ function service(EventService, $rootScope) {
             frequency: route.transportList[0].frequency,
             day: route.transportList[0].day,
             eventType: "cost"
-        }
-
+        };
         // TotalEvents doesn't increase by one?
 
         console.log(costEvent);
 
         EventService.addEvent(costEvent);
+    }
+
+    function determineRouteType(to, from, highPriority){
+        if(EventService.routeIsInternational(to, from)){
+            return highPriority ? "Air" : "Sea";
+        }
+        else { return highPriority ? "Air" : "Land"; }
     }
 
     function findRoute(to, from){
@@ -241,13 +247,13 @@ function service(EventService, $rootScope) {
                     route.transportList[transportIndex].discontinued = true;
                 }
                 else {
-                    console.log("--- No transport option found for given discontinue event ---");
-                    console.log(discontinue);
+                    // console.log("--- No transport option found for given discontinue event ---");
+                    // console.log(discontinue);
                 }
             }
             else {
-                console.log("--- No route available for given discontinue event ---");
-                console.log(discontinue);
+                // console.log("--- No route available for given discontinue event ---");
+                // console.log(discontinue);
             }
         }
     }
@@ -267,7 +273,7 @@ function service(EventService, $rootScope) {
             transportList: [
                 {
                     company: costData.company,
-                    type: costData.type,
+                    type: determineRouteType(costData.to, costData.from, costData.highPriority),
                     weightCost: costData.weightCost,
                     volumeCost: costData.volumeCost,
                     maxWeight: costData.maxWeight,
