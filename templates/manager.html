@@ -228,7 +228,7 @@
                                 <p class="manager-title" style="color: black; font-size: 24px; text-transform:capitalize;">{{event.eventType}} Event</p>
                             </div>
                             <!--<div class="col-xs-0 manager-figureCol">-->
-                                <!--<p class="manager-figure" style="color: black; font-size: 20px; "></p>-->
+                            <!--<p class="manager-figure" style="color: black; font-size: 20px; "></p>-->
                             <!--</div>-->
                         </div>
                         <div class="row manager-figureRow">
@@ -260,7 +260,7 @@
                                 <p class="manager-title">Duration</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.duration}}</p>
+                                <p class="manager-figure">{{event.duration}} hrs</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.maxVolume">
@@ -268,7 +268,7 @@
                                 <p class="manager-title">Max Volume</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.maxVolume}}</p>
+                                <p class="manager-figure">{{event.maxVolume}} cm&sup3</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.maxWeight">
@@ -276,7 +276,7 @@
                                 <p class="manager-title">Max Weight</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.maxWeight}}</p>
+                                <p class="manager-figure">{{event.maxWeight}}g</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.frequency">
@@ -291,7 +291,7 @@
                     <div class="manager-eventItem-panel container-fluid">
                         <div class="row manager-figureRow">
                             <!--<div class="col-xs-4 manager-titleCol">-->
-                                <!--<p class="manager-title"></p>-->
+                            <!--<p class="manager-title"></p>-->
                             <!--</div>-->
                             <div class="col-xs-12 manager-figureCol" style="text-align: right;">
                                 <p class="manager-figure" style="color: black;">{{event.timestamp | date: 'medium'}}</p>
@@ -323,10 +323,10 @@
                         </div>
                         <div class="row manager-figureRow" ng-if="event.volumeCost">
                             <div class="col-xs-4 manager-titleCol">
-                                <p class="manager-title">Volume Cost</p>
+                                <p class="manager-title">Vol. Cost</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.volumeCost}}</p>
+                                <p class="manager-figure">${{event.volumeCost}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.weightCost">
@@ -334,7 +334,7 @@
                                 <p class="manager-title">Weight Cost</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.weightCost}}</p>
+                                <p class="manager-figure">${{event.weightCost}}</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.volume">
@@ -342,7 +342,7 @@
                                 <p class="manager-title">Volume</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.volume}}</p>
+                                <p class="manager-figure">{{event.volume}} cm&sup3</p>
                             </div>
                         </div>
                         <div class="row manager-figureRow" ng-if="event.weight">
@@ -350,7 +350,7 @@
                                 <p class="manager-title">Weight</p>
                             </div>
                             <div class="col-xs-8 manager-figureCol">
-                                <p class="manager-figure">{{event.weight}}</p>
+                                <p class="manager-figure">{{event.weight}}g</p>
                             </div>
                         </div>
                     </div>
