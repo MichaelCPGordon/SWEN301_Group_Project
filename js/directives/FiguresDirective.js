@@ -95,7 +95,7 @@
                     }
                     return revenue;
                 }
-
+                // console.log(scope.totalExpenditure);
 
                 //calculates the total expenditure
                 function getTotalExpenditure(){
@@ -124,7 +124,7 @@
                                         }
                                     }
                                 }
-                                if(sameType.length == 0) {
+                                if(sameType.length != 0) {
                                     var cheapest = sameType[0];
                                     for (var l = 1; l < sameType.length; l++) {
                                         if (sameType[l].weightCost + sameType[l].volumeCost < cheapest) {
