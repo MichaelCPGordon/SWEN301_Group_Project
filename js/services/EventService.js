@@ -63,6 +63,7 @@ function service($http, $state, $rootScope) {
         event.timestamp.setSeconds(0, 0);
 
         eventList[event.eventType].push(event);
+        $rootScope.$broadcast('eventCreated');
     }
 
     function getAllEvents(){
@@ -136,7 +137,7 @@ function service($http, $state, $rootScope) {
                 ensureEventsAreInLists();
                 addEventTypeToEachEvent();
                 delete eventList['_xsi:noNamespaceSchemaLocation'];
-                delete eventList['_xmlns:xsi']; 
+                delete eventList['_xmlns:xsi'];
                 $rootScope.$broadcast('logFileLoaded');
             },
             function(error){

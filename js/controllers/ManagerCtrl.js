@@ -2,12 +2,17 @@
 angular.module('kps')
     .controller('ManagerCtrl', controller);
 
-function controller($scope, EventService) {
+function controller($scope, $rootScope, EventService) {
     var vm = this;
 
     vm.pageToShow = "newEvent";
 
+    $rootScope.$on('logFileLoaded', function(){
+        vm.eventList = EventService.getAllEvents();
+    });
+
     vm.eventList = EventService.getAllEvents();
+
     vm.username = EventService.getUsername();
 
 

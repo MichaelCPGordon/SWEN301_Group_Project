@@ -15,7 +15,11 @@
                     //scope.figuresExpanded = !scope.figuresExpanded;
                     $("#extras").slideToggle(500);
                 };
-                //scope.figuresExpanded = false;
+
+
+                scope.$on('eventCreated', function(){
+                    timeFilterUpdated();
+                });
 
                 scope.timeFilterUpdated = timeFilterUpdated;
 
@@ -26,6 +30,7 @@
                     var from = new Date(2016, 0, 1, 0, 0);
                     var to = new Date();
                     to.setSeconds(0, 0);
+                    to.setDate(to.getDate() + 7);
 
                     scope.timeFilter = {
                         from: from,
