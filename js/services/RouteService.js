@@ -1,4 +1,3 @@
-
 angular.module('kps')
     .factory('RouteService', service);
 
@@ -16,7 +15,6 @@ function service(EventService, $rootScope) {
         updateCostEvent: updateCostEvent,
         addRoute: addRoute
     };
-
 
     var testRoute = {
         to: "",
@@ -49,7 +47,7 @@ function service(EventService, $rootScope) {
     });
 
 	function updatePriceEvent(eventData){
-        
+
         var route = findRoute(eventData.route.to, eventData.route.from);
         
         if(!route){console.log("Route not found");return;}
@@ -66,7 +64,9 @@ function service(EventService, $rootScope) {
 
     function updateCostEvent(eventData){
 
-        console.log(eventData);
+        // console.log(eventData);
+
+        // var route = findRoute(eventData.route.to, eventData.route.from);
 
         var route = findRoute(eventData.route.to, eventData.route.from);
 
@@ -88,14 +88,51 @@ function service(EventService, $rootScope) {
         //
         // updateTransportListItem(transport, costData);
 
-        console.log(routeList);
+        // console.log(routeList);
         
     }
     
-    function addRoute(eventData){
-        
-        
-        
+    function addRoute(eventData) {
+
+        if (findRoute(eventData.to, eventData.from)) {
+            return;
+        }
+
+        var route = createNewRoute(eventData, routeList);
+
+        console.log(route);
+
+        var costEvent = {
+            company: route.transportList[0].company,
+            to: route.to,
+            from: route.from,
+            type: route.transportList[0].type,
+            weightCost: route.transportList[0].weightCost,
+            volumeCost: route.transportList[0].volumeCost,
+            maxWeight: route.transportList[0].maxWeight,
+            maxVolume: route.transportList[0].maxVolume,
+            duration: route.transportList[0].duration,
+            frequency: route.transportList[0].frequency,
+            day: route.transportList[0].day,
+            eventType: "cost"
+        }
+
+        // TotalEvents doesn't increase by one?
+
+        console.log(costEvent);
+
+        EventService.addEvent(costEvent);
+    }
+
+    function findRoute(to, from){
+
+        for(var i=0; i<routeList.length; i++){
+            if(to == routeList[i].to && from == routeList[i].from){
+                return routeList[i];
+            }
+        }
+
+        return null;
     }
 	
     function createDiscontinueEvent(eventData){
@@ -237,10 +274,14 @@ function service(EventService, $rootScope) {
                     maxVolume: costData.maxVolume,
                     frequency: costData.frequency,
                     duration: costData.duration,
+                    day: costData.day,
                     discontinued: false
                 }
             ]
         });
+
+        return routeList[routeList.length-1];
+
     }
 
     function createTransportListItem(transportList, costData){
