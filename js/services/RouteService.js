@@ -98,9 +98,7 @@ function service(EventService, $rootScope) {
             return;
         }
 
-        var route = createNewRoute(eventData, routeList);
-
-        console.log(route);
+        var route = createNewRouteFromUser(eventData, routeList);
 
         var costEvent = {
             company: route.transportList[0].company,
@@ -117,8 +115,6 @@ function service(EventService, $rootScope) {
             eventType: "cost"
         };
         // TotalEvents doesn't increase by one?
-
-        console.log(costEvent);
 
         EventService.addEvent(costEvent);
     }
@@ -204,7 +200,7 @@ function service(EventService, $rootScope) {
                 }
             }
             else {
-                createNewRoute(cost, currentList);
+                createNewRouteFromCostEvent(cost, currentList);
             }
         }
 
@@ -258,7 +254,38 @@ function service(EventService, $rootScope) {
         }
     }
 
-    function createNewRoute(costData, routeList){
+    function createNewRouteFromCostEvent(costData, routeList){
+        routeList.push({
+            to: costData.to,
+            from: costData.from,
+            standardPriceInfo: {
+                weightCost: costData.weightCost,
+                volumeCost: costData.volumeCost
+            },
+            airPriceInfo: {
+                weightCost: costData.weightCost,
+                volumeCost: costData.volumeCost
+            },
+            transportList: [
+                {
+                    company: costData.company,
+                    type: costData.type,
+                    weightCost: costData.weightCost,
+                    volumeCost: costData.volumeCost,
+                    maxWeight: costData.maxWeight,
+                    maxVolume: costData.maxVolume,
+                    frequency: costData.frequency,
+                    duration: costData.duration,
+                    day: costData.day,
+                    discontinued: false
+                }
+            ]
+        });
+
+        return routeList[routeList.length-1];
+    }
+
+    function createNewRouteFromUser(costData, routeList){
         routeList.push({
             to: costData.to,
             from: costData.from,
@@ -287,7 +314,6 @@ function service(EventService, $rootScope) {
         });
 
         return routeList[routeList.length-1];
-
     }
 
     function createTransportListItem(transportList, costData){
