@@ -22,8 +22,8 @@ function service(EventService, $rootScope) {
             day: eventData.day,
             to: eventData.route.to,
             from: eventData.route.from,
-            weight: eventData.weight,
-            volume: eventData.volume,
+            weight: parseInt(eventData.weight),
+            volume: parseInt(eventData.volume),
             priority: generateMailEventPriority(eventData),
             eventType: "mail"
         };

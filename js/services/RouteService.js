@@ -212,16 +212,16 @@ function service(EventService, $rootScope) {
                     if (price.priority == "International Air" || price.priority == "Domestic Air"){
                         for (j = 0; j < routes.length; j++) {
                             routes[j].airPriceInfo = {
-                                weightCost: price.weightCost,
-                                volumeCost: price.volumeCost
+                                weightCost: parseInt(price.weightCost),
+                                volumeCost: parseInt(price.volumeCost)
                             }
                         }
                     }
                     else {
                         for (j = 0; j < routes.length; j++) {
                             routes[j].standardPriceInfo = {
-                                weightCost: price.weightCost,
-                                volumeCost: price.volumeCost
+                                weightCost: parseInt(price.weightCost),
+                                volumeCost: parseInt(price.volumeCost)
                             }
                         }
                     }
@@ -259,23 +259,23 @@ function service(EventService, $rootScope) {
             to: costData.to,
             from: costData.from,
             standardPriceInfo: {
-                weightCost: costData.weightCost,
-                volumeCost: costData.volumeCost
+                weightCost: parseInt(costData.weightCost),
+                volumeCost: parseInt(costData.volumeCost)
             },
             airPriceInfo: {
-                weightCost: costData.weightCost,
-                volumeCost: costData.volumeCost
+                weightCost: parseInt(costData.weightCost),
+                volumeCost: parseInt(costData.volumeCost)
             },
             transportList: [
                 {
                     company: costData.company,
                     type: costData.type,
-                    weightCost: costData.weightCost,
-                    volumeCost: costData.volumeCost,
-                    maxWeight: costData.maxWeight,
-                    maxVolume: costData.maxVolume,
-                    frequency: costData.frequency,
-                    duration: costData.duration,
+                    weightCost: parseInt(costData.weightCost),
+                    volumeCost: parseInt(costData.volumeCost),
+                    maxWeight: parseInt(costData.maxWeight),
+                    maxVolume: parseInt(costData.maxVolume),
+                    frequency: parseInt(costData.frequency),
+                    duration: parseInt(costData.duration),
                     day: costData.day,
                     discontinued: false
                 }
@@ -290,23 +290,23 @@ function service(EventService, $rootScope) {
             to: costData.to,
             from: costData.from,
             standardPriceInfo: {
-                weightCost: costData.weightCost,
-                volumeCost: costData.volumeCost
+                weightCost: parseInt(costData.weightCost),
+                volumeCost: parseInt(costData.volumeCost)
             },
             airPriceInfo: {
-                weightCost: costData.weightCost,
-                volumeCost: costData.volumeCost
+                weightCost: parseInt(costData.weightCost),
+                volumeCost: parseInt(costData.volumeCost)
             },
             transportList: [
                 {
                     company: costData.company,
                     type: determineRouteType(costData.to, costData.from, costData.highPriority),
-                    weightCost: costData.weightCost,
-                    volumeCost: costData.volumeCost,
-                    maxWeight: costData.maxWeight,
-                    maxVolume: costData.maxVolume,
-                    frequency: costData.frequency,
-                    duration: costData.duration,
+                    weightCost: parseInt(costData.weightCost),
+                    volumeCost: parseInt(costData.volumeCost),
+                    maxWeight: parseInt(costData.maxWeight),
+                    maxVolume: parseInt(costData.maxVolume),
+                    frequency: parseInt(costData.frequency),
+                    duration: parseInt(costData.duration),
                     day: costData.day,
                     discontinued: false
                 }
@@ -320,23 +320,23 @@ function service(EventService, $rootScope) {
         transportList.push({
             company: costData.company,
             type: costData.type,
-            weightCost: costData.weightCost,
-            volumeCost: costData.volumeCost,
-            maxWeight: costData.maxWeight,
-            maxVolume: costData.maxVolume,
-            frequency: costData.frequency,
-            duration: costData.duration,
+            weightCost: parseInt(costData.weightCost),
+            volumeCost: parseInt(costData.volumeCost),
+            maxWeight: parseInt(costData.maxWeight),
+            maxVolume: parseInt(costData.maxVolume),
+            frequency: parseInt(costData.frequency),
+            duration: parseInt(costData.duration),
             discontinued: false
         });
     }
 
     function updateTransportListItem(listItem, costData){
-        listItem.weightCost = costData.weightCost;
-        listItem.volumeCost = costData.volumeCost;
-        listItem.maxWeight = costData.maxWeight;
-        listItem.maxVolume = costData.maxVolume;
-        listItem.frequency = costData.frequency;
-        listItem.duration = costData.duration;
+        listItem.weightCost = parseInt(costData.weightCost);
+        listItem.volumeCost = parseInt(costData.volumeCost);
+        listItem.maxWeight = parseInt(costData.maxWeight);
+        listItem.maxVolume = parseInt(costData.maxVolume);
+        listItem.frequency = parseInt(costData.frequency);
+        listItem.duration = parseInt(costData.duration);
     }
 
     function findTransportIndexInList(company, type, transportList){
