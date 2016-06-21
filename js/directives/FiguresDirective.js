@@ -62,7 +62,12 @@
                     scope.deliveryAverage = averageDeliveryTime(scope.selectedRoute);
 
                     scope.criticalRoutes = criticalRoutes();
+                    console.log(scope.criticalRoutes);
                 }
+                
+                scope.updateCriticalRoutes = function(){
+                    scope.criticalRoutes = criticalRoutes();
+                };
 
                 //Total weight value of all mail
                 function getTotalMailWeight() {

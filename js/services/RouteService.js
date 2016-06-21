@@ -60,6 +60,36 @@ function service(EventService, $rootScope) {
             route.standardPriceInfo.volumeCost = "" + eventData.volumeCost;
             route.standardPriceInfo.weightCost = "" + eventData.weightCost;
         }
+
+        var priceEvent = {
+            to: eventData.route.to,
+            from: eventData.route.from,
+            priority: getPriorityType(eventData),
+            weightCost: eventData.weightCost,
+            volumeCost: eventData.volumeCost,
+            eventType: "price"
+        };
+
+        EventService.addEvent(priceEvent);
+    }
+
+    function getPriorityType(ev){
+        if (EventService.routeIsInternational(ev.to, ev.from)){
+            if (ev.highPriority){
+                return "International Air";
+            }
+            else {
+                return "International Standard"
+            }
+        }
+        else {
+            if (ev.highPriority){
+                return "Domestic Air";
+            }
+            else {
+                return "Domestic Sea";
+            }
+        }
     }
 
     function updateCostEvent(eventData){
@@ -88,19 +118,35 @@ function service(EventService, $rootScope) {
         //
         // updateTransportListItem(transport, costData);
 
-        console.log(routeList);
+        var costEvent = {
+            company: route.transportList[index].company,
+            to: route.to,
+            from: route.from,
+            type: route.transportList[index].type,
+            weightCost: eventData.weightCost,
+            volumeCost: eventData.volumeCost,
+            maxWeight: eventData.maxWeight,
+            maxVolume: eventData.maxVolume,
+            duration: eventData.duration,
+            frequency: eventData.frequency,
+            day: route.transportList[index].day,
+            eventType: "cost"
+        };
+
+        EventService.addEvent(costEvent);
         
     }
     
     function addRoute(eventData) {
 
         var route = findRoute(eventData.to, eventData.from);
+        var costEvent;
 
         if (!route) {
 
             route = createNewRouteFromUser(eventData, routeList);
 
-            var costEvent = {
+            costEvent = {
                 company: route.transportList[0].company,
                 to: route.to,
                 from: route.from,
@@ -148,7 +194,7 @@ function service(EventService, $rootScope) {
                     frequency: eventData.frequency,
                     discontinued: false
 
-                }
+                };
 
                 route.transportList.push(transportObject);
 
@@ -164,7 +210,7 @@ function service(EventService, $rootScope) {
                     tVar.frequency = eventData.frequency
             }
 
-            var costEvent = {
+            costEvent = {
                 company: route.transportList[0].company,
                 to: route.to,
                 from: route.from,

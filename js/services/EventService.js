@@ -153,7 +153,6 @@ function service($http, $state, $rootScope, FileSaver) {
             function(response){
                 var x2js = new X2JS();
                 eventList = x2js.xml_str2json(response.data).simulation;
-                console.log(eventList);
                 formatEventDatesToObjects();
                 ensureEventsAreInLists();
                 addEventTypeToEachEvent();
