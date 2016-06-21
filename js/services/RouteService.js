@@ -88,35 +88,102 @@ function service(EventService, $rootScope) {
         //
         // updateTransportListItem(transport, costData);
 
-        // console.log(routeList);
+        console.log(routeList);
         
     }
     
     function addRoute(eventData) {
 
-        if (findRoute(eventData.to, eventData.from)) {
-            return;
+        var route = findRoute(eventData.to, eventData.from);
+
+        if (!route) {
+
+            route = createNewRouteFromUser(eventData, routeList);
+
+            var costEvent = {
+                company: route.transportList[0].company,
+                to: route.to,
+                from: route.from,
+                type: route.transportList[0].type,
+                weightCost: route.transportList[0].weightCost,
+                volumeCost: route.transportList[0].volumeCost,
+                maxWeight: route.transportList[0].maxWeight,
+                maxVolume: route.transportList[0].maxVolume,
+                duration: route.transportList[0].duration,
+                frequency: route.transportList[0].frequency,
+                day: route.transportList[0].day,
+                eventType: "cost"
+            };
+
+            EventService.addEvent(costEvent);
         }
 
-        var route = createNewRouteFromUser(eventData, routeList);
+        else {
 
-        var costEvent = {
-            company: route.transportList[0].company,
-            to: route.to,
-            from: route.from,
-            type: route.transportList[0].type,
-            weightCost: route.transportList[0].weightCost,
-            volumeCost: route.transportList[0].volumeCost,
-            maxWeight: route.transportList[0].maxWeight,
-            maxVolume: route.transportList[0].maxVolume,
-            duration: route.transportList[0].duration,
-            frequency: route.transportList[0].frequency,
-            day: route.transportList[0].day,
-            eventType: "cost"
-        };
-        // TotalEvents doesn't increase by one?
+            var costType = determineRouteType(eventData.to, eventData.from, eventData.highPriority);
+            var indexOfTransport = -1;
 
-        EventService.addEvent(costEvent);
+            for(var i = 0; i < route.transportList.length; i++){
+
+                var transport = route.transportList[i];
+
+                if (transport.company == eventData.company && transport.type == costType){
+                    indexOfTransport = i;
+                }
+            }
+
+            if (indexOfTransport == -1) {
+
+                //create new object and cost / transportList object
+
+                var transportObject = {
+
+                    company: eventData.company,
+                    type: costType,
+                    weightCost: eventData.weightCost,
+                    volumeCost: eventData.volumeCost,
+                    maxWeight: eventData.maxWeight,
+                    maxVolume: eventData.maxVolume,
+                    duration: eventData.duration,
+                    frequency: eventData.frequency,
+                    discontinued: false
+
+                }
+
+                route.transportList.push(transportObject);
+
+            }
+            else {
+
+               var tVar = route.transportList[indexOfTransport];
+                    tVar.weightCost = eventData.weightCost,
+                    tVar.volumeCost = eventData.volumeCost,
+                    tVar.maxWeight = eventData.maxWeight,
+                    tVar.maxVolume = eventData.maxVolume,
+                    tVar.duration = eventData.duration,
+                    tVar.frequency = eventData.frequency
+            }
+
+            var costEvent = {
+                company: route.transportList[0].company,
+                to: route.to,
+                from: route.from,
+                type: route.transportList[0].type,
+                weightCost: route.transportList[0].weightCost,
+                volumeCost: route.transportList[0].volumeCost,
+                maxWeight: route.transportList[0].maxWeight,
+                maxVolume: route.transportList[0].maxVolume,
+                duration: route.transportList[0].duration,
+                frequency: route.transportList[0].frequency,
+                day: route.transportList[0].day,
+                eventType: "cost"
+            };
+
+            EventService.addEvent(costEvent);
+
+
+        }
+        console.log(routeList);
     }
 
     function determineRouteType(to, from, highPriority){

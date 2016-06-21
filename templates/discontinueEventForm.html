@@ -2,13 +2,13 @@
     <div><h4>Route</h4></div>
     <div class="btn-group" uib-dropdown>
         <button type="button" class="btn btn-default" uib-dropdown-toggle>
-            <b>{{selectedEvent.route.to}}</b> to <b>{{selectedEvent.route.from}}</b>
+            <b>{{selectedEvent.route.from}}</b> to <b>{{selectedEvent.route.to}}</b>
         </button>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu" style="width: 100%;">
             <li role="menuitem"
                 ng-repeat="route in activeRoutes"
                 ng-click="selectedEvent.route = route; selectedEvent.transport = route.transportList[0]">
-                <b>{{route.to}}</b> to <b>{{route.from}}</b>
+                <b>{{route.from}}</b> to <b>{{route.to}}</b>
             </li>
         </ul>
     </div>

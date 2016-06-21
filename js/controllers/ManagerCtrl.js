@@ -12,6 +12,10 @@ function controller($scope, $rootScope, EventService) {
         vm.eventList = EventService.getAllEvents();
     });
 
+    $rootScope.$on('eventCreated', function(){
+        vm.eventList = EventService.getAllEvents();
+    });
+
     vm.eventList = EventService.getAllEvents();
 
     vm.username = EventService.getUsername();
