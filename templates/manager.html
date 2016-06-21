@@ -38,7 +38,7 @@
         cursor: pointer;
     }
 
-    .manager-headerLogout:hover, .manager-headerCreateEvent:hover, .manager-headerAnalyse:hover{
+    .manager-headerLogout:hover, .manager-headerCreateEvent>h4:hover, .manager-headerAnalyse>h4:hover{
         color: #C5CAE9;
     }
 
@@ -52,17 +52,16 @@
     .manager-headerCreateEvent{
         float: left;
         color: white;
-        cursor: pointer;
         width: 50%;
     }
     .manager-headerAnalyse{
         float: left;
-        cursor: pointer;
         width: 50%;
     }
     .manager-headerCreateEvent > h4 {
         width: 120px;
         margin: 0;
+        cursor: pointer;
         line-height: 60px;
         float: right;
         text-align: center;
@@ -70,6 +69,7 @@
     .manager-headerAnalyse > h4 {
         width: 120px;
         margin: 0;
+        cursor: pointer;
         line-height: 60px;
         text-align: center;
     }
@@ -179,12 +179,12 @@
                 {{manager.username}}
             </h2>
             <div class="manager-headerTabs">
-                <div class="manager-headerCreateEvent" ng-click="manager.goToPage('newEvent')">
-                    <h4 ng-class="manager.pageToShow == 'newEvent' ? 'manager-selectedTab':''">
+                <div class="manager-headerCreateEvent" >
+                    <h4 ng-class="manager.pageToShow == 'newEvent' ? 'manager-selectedTab':''" ng-click="manager.goToPage('newEvent')">
                         New Event</h4>
                 </div>
-                <div class="manager-headerAnalyse" ng-click="manager.goToPage('analyse')">
-                    <h4 ng-class="manager.pageToShow == 'analyse' ? 'manager-selectedTab':''">
+                <div class="manager-headerAnalyse">
+                    <h4 ng-class="manager.pageToShow == 'analyse' ? 'manager-selectedTab':''" ng-click="manager.goToPage('analyse')">
                         Analyse</h4>
                 </div>
             </div>
@@ -200,7 +200,7 @@
         <h4 style="margin-bottom: 20px;">View Events</h4>
         <div class="manager-eventList-container">
             <div class="manager-eventList">
-                <div class="manager-eventItem" ng-repeat="event in manager.eventList track by $index">
+                <div class="manager-eventItem" ng-repeat="event in manager.eventList | orderBy: 'timestamp': 'true'">
                     <div class="manager-eventItem-panel container-fluid">
                         <div class="row manager-figureRow">
                             <div class="col-xs-12 manager-titleCol">

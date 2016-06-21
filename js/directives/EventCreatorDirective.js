@@ -180,7 +180,6 @@
                 }
 
                 function getInitialisedEventDefaults(){
-                    console.log(scope.activeRoutes[0]);
                     return {
                         mail: {
                             eventType: "mail",
