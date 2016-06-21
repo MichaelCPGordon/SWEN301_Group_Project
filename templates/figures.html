@@ -1,17 +1,28 @@
-<div class="fig-outer">
+<div id = "figuresPanel" class="fig-outer">
 
     <style>
+        /*
         .fig-outer {
             border-radius: 2px;
             border: 1px solid #DDDDDD;
             padding: 10px 15px 15px 15px;
-            /*max-width: 960px;*/
             width: 100%;
             display: block;
             margin: auto;
             background-color: #f7f7f7;
             bottom: 0;
             position: fixed;
+        }
+        */
+
+        .fig-outer {
+            border-radius: 2px;
+            border: 1px solid #DDDDDD;
+            padding: 10px 15px 15px 15px;
+            width: 300px;
+            height: 100%;
+            background-color: #f7f7f7;
+            float: left;
         }
 
         .figures-filterBar {
@@ -85,26 +96,49 @@
             width: 50%;
             height: 100%;
         }
+
+        .fig-row{
+            padding: 15px;
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid #DDDDDD;
+        }
+
+        .fig-rowFigName, .fig-rowFigValue {
+            height: 50%;
+            width: 50%;
+            float: left;
+        }
+
+        .fig-rowFigName > div{
+            margin-top: 13px;
+        }
+
+        .fig-rowFigValue > h3{
+            float: right;
+            text-align: right;
+            margin-top: 13px;
+        }
+
     </style>
 
     <div class="figures-filterBar">
-
         <h4>Business Figures</h4>
+    </div>
 
-        <div class="input-group" style="padding-right: 0; width: 50px;">
-            <button ng-click = "toggleExtras()" class = "btn btn-default">
-                <span class = "glyphicon glyphicon-option-horizontal"></span>
-            </button>
-        </div>
-        <div class="input-group" style="padding-right: 0;">
-            <span class="input-group-addon">To</span>
+    <div class="figures-filterBar">
+        <div class="input-group" style = "width: 100%;">
+            <span class="input-group-addon" style = "width: 60px">To</span>
             <input type="date" class="form-control"
                    ng-model="timeFilter.to"
                    ng-model-options="{updateOn: 'blur'}"
                    ng-change="timeFilterUpdated()">
         </div>
-        <div class="input-group">
-            <span class="input-group-addon">From</span>
+    </div>
+
+    <div class="figures-filterBar">
+        <div class="input-group" style = "width: 100%;">
+            <span class="input-group-addon" style = "width: 60px">From</span>
             <input type="date" class="form-control"
                    ng-model="timeFilter.from"
                    ng-model-options="{updateOn: 'blur'}"
@@ -114,6 +148,53 @@
 
     <div class="fig-container">
 
+        <div class = "fig-row">
+            <div class="fig-rowFigName">
+                <div>Total Events:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>{{ eventListLength }}</h3>
+            </div>
+            <br/>
+            <div class="fig-rowFigName">
+                <div>Total Mail:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>{{ numberMailItems }}</h3>
+            </div>
+        </div>
+        <div class = "fig-row">
+            <div class="fig-rowFigName">
+                <div>Total Revenue:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>${{ totalRevenue }}</h3>
+            </div>
+            <div class="fig-rowFigName">
+                <div>Total Expenditure:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>${{ totalExpenditure }}</h3>
+            </div>
+        </div>
+        <div class = "fig-row">
+            <div class="fig-rowFigName">
+                <div>Total Mail Weight:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>{{ totalMailWeight }}g</h3>
+            </div>
+            <div class="fig-rowFigName">
+                <div>Total Mail Volume:</div>
+            </div>
+            <div class="fig-rowFigValue">
+                <h3>{{ totalMailVolume }}cm&sup3</h3>
+            </div>
+        </div>
+        <div class = "fig-row">
+
+        </div>
+        <!--
         <div class="fig-rowA">
             <div style="border-right: 1px solid #DDDDDD;">
                 <div class="fig-rowAFigName">
@@ -167,7 +248,6 @@
 
             </div>
         </div>
-
-
+        -->
     </div>
 </div>

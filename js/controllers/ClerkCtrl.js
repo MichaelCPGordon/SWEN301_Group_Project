@@ -14,4 +14,7 @@ function controller($scope, EventService) {
         EventService.logout();
     }
 
+    $scope.toggleFigures = function (){
+        $("#figuresPanel").toggle();
+    }
 }

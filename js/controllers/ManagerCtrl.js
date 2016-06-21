@@ -28,4 +28,8 @@ function controller($scope, $rootScope, EventService) {
         vm.pageToShow = pageName;
     }
 
+    $scope.toggleFigures = function (){
+        $("#figuresPanel").toggle();
+    }
+
 }

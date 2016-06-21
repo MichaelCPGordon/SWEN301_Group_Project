@@ -5,10 +5,18 @@
         background-color: #3F51B5;
     }
 
-    .clerk-headerUsername {
+    .clerk-headerToggleButton {
         float: left;
         color: #fafafa;
         margin: 0 0 0 20px;
+        height: 60px;
+        line-height: 55px;
+    }
+
+    .clerk-headerUsername {
+        float: left;
+        color: #fafafa;
+        margin: 0 0 0 40px;
         height: 60px;
         line-height: 60px;
     }
@@ -26,18 +34,42 @@
         color: #C5CAE9;
     }
 
+    #right {
+        overflow: auto;
+    }
+
+    #MainContainer{
+        width: 100%;
+        float: left;
+        height: 100vh;
+    }
+
 
 </style>
 
-<div class="clerk-header">
-    <h2 class="clerk-headerUsername">
-        {{clerk.username}}
-    </h2>
-    <h4 class="clerk-headerLogout" ng-click="clerk.logout()">
-        Logout
-    </h4>
+<div id = "MainContainer">
+
+    <figures></figures>
+
+    <div id = "right">
+
+        <div class="clerk-header">
+            <div class = "clerk-headerToggleButton">
+                <button class = "btn btn-primary" ng-click = "toggleFigures()">
+                    <span class = "glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+            </div>
+            <h2 class="clerk-headerUsername">
+                {{clerk.username}}
+            </h2>
+            <h4 class="clerk-headerLogout" ng-click="clerk.logout()">
+                Logout
+            </h4>
+        </div>
+
+        <event-creator></event-creator>
+
+    </div>
+
 </div>
 
-<event-creator></event-creator>
-
-<figures></figures>

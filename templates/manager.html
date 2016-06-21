@@ -6,13 +6,21 @@
         background-color: #3F51B5;
     }
 
+    .clerk-headerToggleButton {
+        float: left;
+        color: #fafafa;
+        margin: 0 0 0 20px;
+        height: 60px;
+        line-height: 55px;
+    }
+
     .manager-headerUsername {
         float: left;
         color: #fafafa;
         padding-left: 20px;
         margin:0;
         height: 60px;
-        width: 30%;
+        width: 25%;
         line-height: 60px;
     }
 
@@ -134,87 +142,48 @@
         height: 50px;
     }
 
-    .dontShowExtras{
-        display: none;
+    #right {
+        overflow: auto;
     }
-    #figuresBar{
+
+    #MainContainer{
         width: 100%;
-        bottom: 0;
-        position: fixed;
-    }
-    .bar{
-        background-color: #EEEEEE;
-        width: 100%;
-        height: 100px;
-    }
-    .segTitle{
-        display: inline;
-        padding: .2em .6em .3em;
-        font-weight: 700;
-        line-height: 1;
-        color: #fff;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: .25em;
-    }
-    .gap{
-        height: 8px;
-    }
-    .blue{
-        background-color: #5bc0de;
-    }
-    .green{
-        background-color: #5cb85c;
-    }
-    .yellow{
-        background-color: #f0ad4e;
-    }
-    .grey{
-        background-color: #999999;
-    }
-    .segment{
-        width: 33.3%;
-        height: 100%;
         float: left;
-        padding: 10px;
-    }
-    .first{
-        background-color: #D7D7D7;
-    }
-    .second{
-        background-color: #DDDDDD;
-    }
-    .third{
-        background-color: #D7D7D7;
-    }
-    * {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
+        height: 100vh;
     }
 </style>
 
-<div class="manager-header">
-    <h2 class="manager-headerUsername">
-        {{manager.username}}
-    </h2>
-    <div class="manager-headerTabs">
-        <div class="manager-headerCreateEvent" ng-click="manager.goToPage('newEvent')">
-            <h4 ng-class="manager.pageToShow == 'newEvent' ? 'manager-selectedTab':''">
-                New Event</h4>
-        </div>
-        <div class="manager-headerAnalyse" ng-click="manager.goToPage('analyse')">
-            <h4 ng-class="manager.pageToShow == 'analyse' ? 'manager-selectedTab':''">
-                Analyse</h4>
-        </div>
-    </div>
-    <h4 class="manager-headerLogout" ng-click="manager.logout()">
-        Logout
-    </h4>
-</div>
+<div id = "MainContainer">
 
-<event-creator ng-show="manager.pageToShow == 'newEvent'"></event-creator>
+    <figures></figures>
+
+    <div id = "right">
+
+        <div class="manager-header">
+            <div class = "clerk-headerToggleButton">
+                <button class = "btn btn-primary" ng-click = "toggleFigures()">
+                    <span class = "glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+            </div>
+            <h2 class="manager-headerUsername">
+                {{manager.username}}
+            </h2>
+            <div class="manager-headerTabs">
+                <div class="manager-headerCreateEvent" ng-click="manager.goToPage('newEvent')">
+                    <h4 ng-class="manager.pageToShow == 'newEvent' ? 'manager-selectedTab':''">
+                        New Event</h4>
+                </div>
+                <div class="manager-headerAnalyse" ng-click="manager.goToPage('analyse')">
+                    <h4 ng-class="manager.pageToShow == 'analyse' ? 'manager-selectedTab':''">
+                        Analyse</h4>
+                </div>
+            </div>
+            <h4 class="manager-headerLogout" ng-click="manager.logout()">
+                Logout
+            </h4>
+        </div>
+
+        <event-creator ng-show="manager.pageToShow == 'newEvent'"></event-creator>
 
 <div style="max-width: 1000px; height: 100%; padding: 20px; display: block; margin: 0 auto;" ng-show="manager.pageToShow == 'analyse'">
     <div class="manager-analyseContainer">
@@ -360,4 +329,5 @@
     </div>
 </div>
 
-<figures></figures>
+    </div>
+</div>
