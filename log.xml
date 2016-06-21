@@ -1,5 +1,4 @@
-<simulation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="postal.xsd">
+<simulation>
   <cost>
     <timestamp>2016,01,05,14,30,00,00</timestamp>
     <company>Air NZ</company>
@@ -72,7 +71,7 @@ xsi:noNamespaceSchemaLocation="postal.xsd">
   </cost>
   <cost>
     <timestamp>2016,01,15,14,35,00,00</timestamp>
-    <company>Rodney's Longhaul</company>
+    <company>Rodneys Longhaul</company>
     <to>Hamilton</to>
     <from>Auckland</from>
     <type>Land</type>

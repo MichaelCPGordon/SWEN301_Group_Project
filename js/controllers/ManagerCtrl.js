@@ -5,6 +5,7 @@ angular.module('kps')
 function controller($scope, $rootScope, EventService) {
     var vm = this;
 
+
     vm.pageToShow = "newEvent";
 
     $rootScope.$on('logFileLoaded', function(){

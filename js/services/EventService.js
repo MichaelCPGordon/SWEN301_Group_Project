@@ -2,7 +2,7 @@
 angular.module('kps')
     .factory('EventService', service);
 
-function service($http, $state, $rootScope) {
+function service($http, $state, $rootScope, FileSaver) {
 
     var loggedIn = false;
     var username = "";
@@ -11,6 +11,7 @@ function service($http, $state, $rootScope) {
     var nzLocations = ["Auckland", "Wellington", "Hamilton", "Rotorua", "Palmerston North", "Christchurch", "Dunedin"];
 
     var svc = {
+        generateXMLLog: generateXMLLog,
         getEventsBetweenDateRange: getEventsBetweenDateRange,
         addEvent: addEvent,
         getAllEvents: getAllEvents,
@@ -28,6 +29,25 @@ function service($http, $state, $rootScope) {
         routeIsInternational: routeIsInternational,
         locationIsInNz: locationIsInNz
     };
+
+    function generateXMLLog(){
+        var allEvents = angular.copy(getAllEvents());
+        var x2js = new X2JS();
+        var xml = "", xmlItem;
+
+        for (var i = 0; i < allEvents.length; i++){
+            allEvents[i].timestamp = convertDateObjectToString(allEvents[i].timestamp);
+            xmlItem = "<" + allEvents[i].eventType + ">" +
+                x2js.json2xml_str(allEvents[i]) + "</" +
+                allEvents[i].eventType + ">";
+            xml += xmlItem;
+
+        }
+        xml = '<simulation>' + xml + '</simulation>';
+
+        var data = new Blob([xml], { type: 'text/plain;charset=utf-8' });
+        FileSaver.saveAs(data, 'log.xml');
+    }
 
     function getEventsBetweenDateRange(to, from){
         var i, filteredEvents = [], timestamp;
@@ -133,6 +153,7 @@ function service($http, $state, $rootScope) {
             function(response){
                 var x2js = new X2JS();
                 eventList = x2js.xml_str2json(response.data).simulation;
+                console.log(eventList);
                 formatEventDatesToObjects();
                 ensureEventsAreInLists();
                 addEventTypeToEachEvent();
@@ -200,10 +221,23 @@ function service($http, $state, $rootScope) {
             else { eventList[eventType].timestamp = convertDateObjectToString(eventList[eventType].timestamp); }
         }
 
-        function convertDateObjectToString(obj){
-            return obj.getFullYear() + "," + (obj.getMonth() + 1) + "," + obj.getDay() + "," +
-                obj.getHours().toFixed(2) + "," + obj.getMinutes().toFixed(2) + "," + obj.getSeconds().toFixed(2);
-        }
+
+    }
+
+    function convertDateObjectToString(obj){
+        var year, month, date, hour, min;
+        year = obj.getFullYear();
+        month = obj.getMonth();
+        if (month < 10){ month = "0" + month; }
+        date = obj.getDate();
+        if (date < 10){ date = "0" + date; }
+        hour = obj.getHours();
+        if (hour < 10){ hour = "0" + hour; }
+        min = obj.getMinutes();
+        if (min < 10){ min = "0" + min; }
+        console.log(year + "," + month + "," + date + "," + hour + "," + min + "," + "00,00");
+
+        return year + "," + month + "," + date + "," + hour + "," + min + "," + "00,00";
     }
 
     function locationIsInNz(location){
@@ -276,6 +310,7 @@ function service($http, $state, $rootScope) {
     }
 
     function logout(){
+        generateXMLLog();
         loggedIn = false;
         username = "";
         $state.go('login');

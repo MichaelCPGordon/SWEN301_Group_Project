@@ -2,7 +2,8 @@
     angular.module('kps', [
         'ui.router',
         'ngAnimate',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngFileSaver'
     ])
     .run(function($rootScope, $state, EventService){
         $state.go('login');
